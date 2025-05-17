@@ -1,9 +1,9 @@
-import Input from "./input";
+import Input from "./Input";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 export default function LoginFormComponet() {
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div className="bg-white/80 p-8 rounded-lg shadow-md w-full max-w-md">
       <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
 
       <div className="flex justify-between mb-4 text-sm text-blue-600">
