@@ -9,7 +9,7 @@ title: An AI-Powered Game Framework for Privacy-Preserving Secure Coding
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# An AI-Powered Game Framework for Privacy-Preserving Secure Coding
+# Putting Privacy into Practice: An AI-driven serious game for GDPR compliance
 
 #### Team
 
