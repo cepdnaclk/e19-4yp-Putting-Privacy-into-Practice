@@ -12,7 +12,10 @@ export default function Login() {
 
   function handleReset(event) {
     event.preventDefault();
-    if (email && !email.includes("@")) {
+    if (!email) {
+      setErrorMsg("Email is required");
+      return;
+    } else if (email && !email.includes("@")) {
       setErrorMsg("Invalid Email address");
       return;
     }

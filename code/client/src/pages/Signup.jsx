@@ -18,7 +18,7 @@ export default function Signup() {
   function handleSignUp(event) {
     event.preventDefault();
     if (!email || !email.includes("@")) {
-      setErrorMsg("Invalid Email");
+      setErrorMsg(!email ? "Email is required" : "Invalid email");
       return;
     }
 
@@ -27,8 +27,8 @@ export default function Signup() {
       return;
     }
 
-    if (password !== confirmPass || lenWarning || !passwordMatch) {
-      setErrorMsg("Invalid Passwords");
+    if (!password || password !== confirmPass || lenWarning || !passwordMatch) {
+      setErrorMsg(!password ? "Password is required" : "Invalid Passwords");
       return;
     }
   }
