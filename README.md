@@ -1,5 +1,14 @@
 # An AI-Powered Game Framework for Privacy-Preserving Secure Coding
 
+## Getting Started
+
+First, clone the repository:
+
+```bash
+git clone https://github.com/cepdnaclk/e19-4yp-Putting-Privacy-into-Practice.git
+cd e19-4yp-Putting-Privacy-into-Practice
+```
+
 ## Folder Structure
 
 ```
