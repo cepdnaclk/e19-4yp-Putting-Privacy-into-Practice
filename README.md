@@ -9,6 +9,8 @@ git clone https://github.com/cepdnaclk/e19-4yp-Putting-Privacy-into-Practice.git
 cd e19-4yp-Putting-Privacy-into-Practice
 ```
 
+---
+
 ## Folder Structure
 
 ```
