@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import devImage from "../assets/frontImg.png";
 import Button from "../components/Button";
 import FormField from "../components/FormField";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AlertBanner from "../components/AlertBanner";
+import axios from "axios";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -11,11 +12,21 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+
+  const emailRef = useRef(null);
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+  const currPasswordRef = useRef(null);
 
   const passwordMatch = !confirmPass || password === confirmPass;
   const lenWarning = password && password.length < 6;
 
   function handleSignUp(event) {
+    if (document.activeElement) {
+      document.activeElement.blur();
+    }
+
     event.preventDefault();
     if (!email || !email.includes("@")) {
       setErrorMsg(!email ? "Email is required" : "Invalid email");
@@ -30,6 +41,34 @@ export default function Signup() {
     if (!password || password !== confirmPass || lenWarning || !passwordMatch) {
       setErrorMsg(!password ? "Password is required" : "Invalid Passwords");
       return;
+    }
+
+    axios
+      .post("http://localhost:4000/api/auth/register", {
+        username: username,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setSuccessMsg("Your account has been created successfully.");
+        setErrorMsg("");
+      })
+      .catch((error) => {
+        console.error("SignUp failed: ", error.response);
+        if (error.response.data.message) {
+          setErrorMsg(error.response.data.message);
+        } else {
+          setErrorMsg("Something went wrong. Please try again.");
+        }
+        setSuccessMsg("");
+      });
+  }
+
+  function handleKeyDown(e, nextInputRef) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      nextInputRef.current?.focus();
     }
   }
 
@@ -52,6 +91,15 @@ export default function Signup() {
             onClose={() => setErrorMsg("")}
           />
         )}
+
+        {successMsg && (
+          <AlertBanner
+            label={successMsg}
+            type="Success"
+            onClose={() => setSuccessMsg("")}
+          />
+        )}
+
         <div className="w-1/2 flex flex-col items-center justify-center">
           <div className="mb-10 text-center">
             <h1 className="text-2xl font-bold font-Inter">
@@ -65,13 +113,22 @@ export default function Signup() {
             </p>
           </div>
 
-          <form className="w-full" onSubmit={handleSignUp}>
+          <form
+            className="w-full"
+            onSubmit={handleSignUp}
+            onFocus={() => {
+              setErrorMsg("");
+              setSuccessMsg("");
+            }}
+          >
             <FormField
               label="Email"
               placeholder="email@domain"
               type="text"
               value={email}
               onChange={setEmail}
+              ref={emailRef}
+              handleKeyDown={(e) => handleKeyDown(e, usernameRef)}
             />
             <FormField
               label="Username"
@@ -79,6 +136,8 @@ export default function Signup() {
               type="text"
               value={username}
               onChange={setUsername}
+              ref={usernameRef}
+              handleKeyDown={(e) => handleKeyDown(e, passwordRef)}
             />
             <FormField
               label="Password"
@@ -87,6 +146,8 @@ export default function Signup() {
               value={password}
               onChange={setPassword}
               lenWarning={lenWarning}
+              ref={passwordRef}
+              handleKeyDown={(e) => handleKeyDown(e, currPasswordRef)}
             />
             <FormField
               label="Confirm password"
@@ -96,6 +157,7 @@ export default function Signup() {
               onChange={setConfirmPass}
               passwordMatch={passwordMatch}
               disabled={!password}
+              ref={currPasswordRef}
             />
             <Button className="w-auto px-6">Sign up</Button>
           </form>

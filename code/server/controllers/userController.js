@@ -38,6 +38,12 @@ exports.register = async (req, res) => {
       },
     });
   } catch (error) {
+    if (error.name === 'ValidationError') {
+      // Mongoose validation error (e.g., required, minlength, match)
+      const messages = Object.values(error.errors).map((val) => val.message);
+      return res.status(400).json({ message: messages });
+    }
+
     res.status(500).json({ message: 'Server error', error });
   }
 };

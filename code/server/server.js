@@ -19,6 +19,18 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+const corsOrigin =
+  process.env.NODE_ENV === 'production'
+    ? process.env.CORS_ORIGIN_PROD
+    : process.env.CORS_ORIGIN_DEV;
+
+app.use(
+  cors({
+    origin: corsOrigin,
+    credentials: true,
+  })
+);
+
 app.use('/api/auth', userRoutes);
 
 // default route
