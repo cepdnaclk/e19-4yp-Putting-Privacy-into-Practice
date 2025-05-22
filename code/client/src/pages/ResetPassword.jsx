@@ -11,6 +11,10 @@ export default function Login() {
   const [successMsg, setSuccessMsg] = useState("");
 
   function handleReset(event) {
+    if (document.activeElement) {
+      document.activeElement.blur();
+    }
+
     event.preventDefault();
     if (!email) {
       setErrorMsg("Email is required");
@@ -55,7 +59,14 @@ export default function Login() {
             <h1 className="text-2xl font-bold">Reset Password</h1>
           </div>
 
-          <form className="w-full" onSubmit={handleReset}>
+          <form
+            className="w-full"
+            onSubmit={handleReset}
+            onFocus={() => {
+              setErrorMsg("");
+              setSuccessMsg("");
+            }}
+          >
             <FormField
               label="E-mail address"
               type="text"

@@ -8,6 +8,8 @@ export default function Input({
   disabled = false,
   lenWarning = false,
   required = false,
+  ref = null,
+  handleKeyDown = () => {},
 }) {
   const ringFocusColor =
     passwordMatch && !lenWarning ? "focus:ring-blue-600" : "focus:ring-red-600";
@@ -25,6 +27,8 @@ export default function Input({
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
         required={required}
+        ref={ref}
+        onKeyDown={handleKeyDown}
       />
       {lenWarning && (
         <p className="text-xs text-red-600">

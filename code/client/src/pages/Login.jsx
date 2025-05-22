@@ -2,11 +2,21 @@ import { Link } from "react-router-dom";
 import devImage from "../assets/frontImg.png";
 import Button from "../components/Button";
 import FormField from "../components/FormField";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  function handleKeyDown(e, nextInputRef) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      nextInputRef.current?.focus();
+    }
+  }
 
   return (
     <div className="flex min-h-screen overflow-hidden">
@@ -37,6 +47,8 @@ export default function Login() {
               value={username}
               onChange={setUsername}
               required={true}
+              ref={usernameRef}
+              handleKeyDown={(e) => handleKeyDown(e, passwordRef)}
             />
             <FormField
               label="password"
@@ -44,6 +56,7 @@ export default function Login() {
               value={password}
               onChange={setPassword}
               required={true}
+              ref={passwordRef}
             />
             <div className="flex justify-end">
               <Link
