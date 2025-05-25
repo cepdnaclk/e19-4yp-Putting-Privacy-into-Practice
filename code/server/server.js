@@ -1,5 +1,6 @@
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
+const questionRoutes = require('./routes/questionRoutes');
 const app = express();
 
 const database = require('./config/database');
@@ -32,6 +33,7 @@ app.use(
 );
 
 app.use('/api/auth', userRoutes);
+app.use('/api/questions', questionRoutes);
 
 // default route
 app.get('/', (req, res) => {
