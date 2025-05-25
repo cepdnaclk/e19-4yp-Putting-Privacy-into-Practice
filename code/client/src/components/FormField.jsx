@@ -1,16 +1,20 @@
-export default function Input({
-  label,
-  placeholder,
-  type,
-  value,
-  onChange,
-  passwordMatch = true,
-  disabled = false,
-  lenWarning = false,
-  required = false,
-  ref = null,
-  handleKeyDown = () => {},
-}) {
+import { forwardRef } from "react";
+
+function FormField(
+  {
+    label,
+    placeholder,
+    type,
+    value,
+    onChange,
+    passwordMatch = true,
+    disabled = false,
+    lenWarning = false,
+    required = false,
+    handleKeyDown = () => {},
+  },
+  ref
+) {
   const ringFocusColor =
     passwordMatch && !lenWarning ? "focus:ring-blue-600" : "focus:ring-red-600";
 
@@ -41,3 +45,5 @@ export default function Input({
     </div>
   );
 }
+
+export default forwardRef(FormField);

@@ -83,6 +83,14 @@ export default function Signup() {
 
   return (
     <div className="flex min-h-screen overflow-hidden">
+      <div className="w-1/2 h-screen">
+        <img
+          src={devImage}
+          alt="Developer"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       <div className="w-1/2 relative flex flex-col items-center justify-center h-screen">
         {errorMsg && (
           <AlertBanner
@@ -162,14 +170,6 @@ export default function Signup() {
             <Button className="w-auto px-6">Sign up</Button>
           </form>
         </div>
-      </div>
-
-      <div className="w-1/2 h-screen">
-        <img
-          src={devImage}
-          alt="Developer"
-          className="w-full h-full object-cover"
-        />
       </div>
     </div>
   );
