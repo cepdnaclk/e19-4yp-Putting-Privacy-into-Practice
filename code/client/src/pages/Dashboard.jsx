@@ -1,10 +1,9 @@
-import Sidebar from "../components/Sidebar";
+import Layout from "../components/Layout";
 
 export default function Dashboard() {
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-      {/* <MainContent /> */}
-    </div>
+    <Layout>
+      <div></div>
+    </Layout>
   );
 }
