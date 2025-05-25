@@ -44,7 +44,7 @@ export default function Signup() {
     }
 
     axios
-      .post("http://localhost:4000/api/auth/register", {
+      .post("/api/auth/register", {
         username: username,
         email: email,
         password: password,
