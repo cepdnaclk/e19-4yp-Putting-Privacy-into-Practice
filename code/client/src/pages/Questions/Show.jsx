@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../../components/Sidebar";
-import axios from "axios";
 import { getAllQuestions } from "../../services/questionService";
+import Layout from "../../components/Layout";
 
 export default function Show() {
   const [questions, setQuestions] = useState([]);
@@ -20,8 +19,7 @@ export default function Show() {
     return <p className="text-red-600 font-semibold">Error: {error}</p>;
 
   return (
-    <div className="flex h-screen">
-      <Sidebar />
+    <Layout>
       <div className="max-w-4xl mx-auto p-6">
         <h2 className="text-3xl font-bold mb-6 text-blue-800">All Questions</h2>
         {questions.map((q) => (
@@ -62,6 +60,6 @@ export default function Show() {
           </div>
         ))}
       </div>
-    </div>
+    </Layout>
   );
 }

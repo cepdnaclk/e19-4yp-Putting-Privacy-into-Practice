@@ -1,4 +1,4 @@
-import Sidebar from "../../components/Sidebar";
+import Layout from "../../components/Layout";
 import FormField from "../../components/FormField";
 import { useState } from "react";
 
@@ -33,9 +33,8 @@ export default function Create() {
     ));
 
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-      <div className="flex-1 p-6 bg-gray-300 ml-64 mr-64">
+    <Layout>
+      <div className="flex-1 p-6 bg-gray-300">
         <h1 className="mb-4 text-xl font-bold">Create a New Question</h1>
 
         <FormField
@@ -59,6 +58,6 @@ export default function Create() {
 
         {questionType === "Multiple Choice" && renderOptions()}
       </div>
-    </div>
+    </Layout>
   );
 }
