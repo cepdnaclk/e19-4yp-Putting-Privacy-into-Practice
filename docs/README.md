@@ -18,7 +18,7 @@ title: An AI-Powered Game Framework for Privacy-Preserving Secure Coding
 6. [Results and Analysis](#results-and-analysis)
 7. [Conclusion](#conclusion)
 8. [Publications](#publications)
-9. [Links](#links)
+9. [Useful Links](#useful-links)
 
 ---
 
