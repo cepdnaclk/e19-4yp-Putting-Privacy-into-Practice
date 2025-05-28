@@ -82,7 +82,7 @@ These advancements open new possibilities for intelligent, personalized learning
 
 This study adopts a mixed-methods approach, combining both quantitative and qualitative research methodologies to evaluate the effectiveness of the proposed AI-powered serious game framework for GDPR education.
 
-### Design and Development
+#### Design and Development
 
 - The core of the research is the development of an AI-driven serious game framework that integrates:
 
@@ -98,7 +98,7 @@ This study adopts a mixed-methods approach, combining both quantitative and qual
 
 - The LLM (GPT-4) acts as an intelligent tutor, offering contextual explanations and guiding learners toward a better understanding of GDPR concepts.
 
-### Sample and Participants
+#### Sample and Participants
 
 - The study will involve 20 participants, selected from:
 
@@ -112,7 +112,7 @@ This study adopts a mixed-methods approach, combining both quantitative and qual
 
 - Each participant will complete a pre-assessment and post-assessment to measure knowledge improvement and behavioral change.
 
-### Data Collection Procedure
+#### Data Collection Procedure
 
 - All participants will receive a Participant Information Sheet explaining the study's purpose, procedures, benefits, and their rights (including the voluntary nature of participation).
 
