@@ -7,6 +7,8 @@ title: An AI-Powered Game Framework for Privacy-Preserving Secure Coding
 
 # An AI-driven serious game for GDPR compliance
 
+---
+
 #### Table of content
 
 <!-- 1. [Abstract](#abstract)
@@ -75,6 +77,8 @@ Recent studies in related domains like cybersecurity training and secure coding 
 These advancements open new possibilities for intelligent, personalized learning systems that respond to user skill level and performance—ensuring a more effective and engaging learning experience.
 
 ## Methodology
+
+![Image](./images/chart.png)
 
 This study adopts a mixed-methods approach, combining both quantitative and qualitative research methodologies to evaluate the effectiveness of the proposed AI-powered serious game framework for GDPR education.
 
