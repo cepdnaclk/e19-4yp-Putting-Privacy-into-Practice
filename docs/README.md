@@ -34,9 +34,9 @@ Our research project focuses on creating a more effective and engaging way to te
 
 To improve this, our enhanced game framework introduces two key elements:
 
-- Adaptive Difficulty: Powered by Reinforcement Learning (Q-learning), the game adjusts its challenges based on the player's skill level, making it neither too easy nor too hard.
+- **Adaptive Difficulty**: Powered by Reinforcement Learning (Q-learning), the game adjusts its challenges based on the player's skill level, making it neither too easy nor too hard.
 
-- Interactive Feedback: Using Large Language Models (LLMs), the game provides personalized feedback to guide and motivate players as they learn.
+- **Interactive Feedback**: Using Large Language Models (LLMs), the game provides personalized feedback to guide and motivate players as they learn.
 
 By integrating these features, our project aims to boost player engagement, enhance learning outcomes, and help developers confidently build privacy-aware software systems.
 
@@ -73,9 +73,9 @@ This study adopts a mixed-methods approach, combining both quantitative and qual
 1. Design and Development
 - The core of the research is the development of an AI-driven serious game framework that integrates:
 
-    - Reinforcement Learning (Q-Learning) to dynamically personalize privacy training content based on player interactions.
+    - **Reinforcement Learning (Q-Learning)** to dynamically personalize privacy training content based on player interactions.
 
-    - Large Language Models (LLMs), specifically GPT-4, to provide real-time, interactive feedback when players answer questions incorrectly.
+    - **Large Language Models (LLMs)**, specifically GPT-4, to provide real-time, interactive feedback when players answer questions incorrectly.
 
 - The framework is built upon established game-based learning models that incorporate GDPR principles, particularly the Data Minimization Model.
 
