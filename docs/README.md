@@ -1,7 +1,6 @@
 ---
 layout: home
 permalink: index.html
-
 repository-name: e19-4yp-Putting-Privacy-into-Practice
 title: An AI-Powered Game Framework for Privacy-Preserving Secure Coding
 ---
@@ -10,7 +9,7 @@ title: An AI-Powered Game Framework for Privacy-Preserving Secure Coding
 
 #### Table of content
 
-1. [Abstract](#abstract)
+<!-- 1. [Abstract](#abstract)
 2. [Introduction](#introduction)
 3. [Related works](#related-works)
 4. [Methodology](#methodology)
@@ -18,11 +17,18 @@ title: An AI-Powered Game Framework for Privacy-Preserving Secure Coding
 6. [Results and Analysis](#results-and-analysis)
 7. [Conclusion](#conclusion)
 8. [Publications](#publications)
-9. [Useful Links](#useful-links)
+9. [Team Members](#team-members)
+10. [Supervisors](#supervisors)
+11. [Links](#links) -->
 
----
+1. [Introduction](#introduction)
+2. [Related works](#related-works)
+3. [Methodology](#methodology)
+4. [Team Members](#team-members)
+5. [Supervisors](#supervisors)
+6. [Links](#links)
 
-## Abstract
+<!-- ## Abstract -->
 
 ## Introduction
 
@@ -54,10 +60,12 @@ Several studies have highlighted that developers struggle with:
 
 Despite these challenges, there is a notable lack of educational interventions focused on equipping developers with the necessary skills and motivation to embed privacy from the ground up.
 
-### Game-Based Learning in Privacy Education
+#### Game-Based Learning in Privacy Education
+
 To address this gap, researchers such as Arachchilage et al. have proposed serious game frameworks that teach data minimization and GDPR principles using game-based learning approaches. These games integrate learning models like Bloom’s Taxonomy to promote better understanding. While promising, these early frameworks lacked adaptive feedback and personalization mechanisms, which are crucial for maintaining learner engagement.
 
-### Adaptive and Intelligent Learning Enhancements
+#### Adaptive and Intelligent Learning Enhancements
+
 Recent studies in related domains like cybersecurity training and secure coding have shown the effectiveness of:
 
 - **Reinforcement Learning (RL)** techniques (e.g., Q-learning) to dynamically adjust game difficulty
@@ -71,11 +79,12 @@ These advancements open new possibilities for intelligent, personalized learning
 This study adopts a mixed-methods approach, combining both quantitative and qualitative research methodologies to evaluate the effectiveness of the proposed AI-powered serious game framework for GDPR education.
 
 1. Design and Development
+
 - The core of the research is the development of an AI-driven serious game framework that integrates:
 
-    - **Reinforcement Learning (Q-Learning)** to dynamically personalize privacy training content based on player interactions.
+  - **Reinforcement Learning (Q-Learning)** to dynamically personalize privacy training content based on player interactions.
 
-    - **Large Language Models (LLMs)**, specifically GPT-4, to provide real-time, interactive feedback when players answer questions incorrectly.
+  - **Large Language Models (LLMs)**, specifically GPT-4, to provide real-time, interactive feedback when players answer questions incorrectly.
 
 - The framework is built upon established game-based learning models that incorporate GDPR principles, particularly the Data Minimization Model.
 
@@ -86,11 +95,12 @@ This study adopts a mixed-methods approach, combining both quantitative and qual
 - The LLM (GPT-4) acts as an intelligent tutor, offering contextual explanations and guiding learners toward a better understanding of GDPR concepts.
 
 2. Sample and Participants
+
 - The study will involve 20 participants, selected from:
 
-     - Undergraduate students in software engineering and computer science programs.
+  - Undergraduate students in software engineering and computer science programs.
 
-     - Early-career software developers with varying levels of experience in privacy-aware development and GDPR knowledge.
+  - Early-career software developers with varying levels of experience in privacy-aware development and GDPR knowledge.
 
 - Participants will be recruited through university networks and professional forums related to software development.
 
@@ -99,29 +109,30 @@ This study adopts a mixed-methods approach, combining both quantitative and qual
 - Each participant will complete a pre-assessment and post-assessment to measure knowledge improvement and behavioral change.
 
 3. Data Collection Procedure
+
 - All participants will receive a Participant Information Sheet explaining the study's purpose, procedures, benefits, and their rights (including the voluntary nature of participation).
 
 - Informed consent will be obtained through a signed consent form before participation begins.
 
 - The data collection process will follow these steps:
 
-    1. Pre-assessment questionnaire to evaluate baseline understanding of GDPR and secure coding practices.
+  1. Pre-assessment questionnaire to evaluate baseline understanding of GDPR and secure coding practices.
 
-    2. Gameplay session with the serious game framework.
+  2. Gameplay session with the serious game framework.
 
-    3. System Usability Scale (SUS) survey to assess user satisfaction and the usability of the system.
+  3. System Usability Scale (SUS) survey to assess user satisfaction and the usability of the system.
 
-    4. Post-assessment questionnaire to measure learning gains, awareness of GDPR principles, and changes in coding behavior.
+  4. Post-assessment questionnaire to measure learning gains, awareness of GDPR principles, and changes in coding behavior.
 
-    5. Optional open-ended feedback at the end of the session for collecting qualitative insights and user suggestions.
+  5. Optional open-ended feedback at the end of the session for collecting qualitative insights and user suggestions.
 
-## Experiment Setup and Implementation
+<!-- ## Experiment Setup and Implementation
 
 ## Results and Analysis
 
 ## Conclusion
 
-## Publications
+## Publications -->
 
 ## Team Members
 
@@ -134,9 +145,7 @@ This study adopts a mixed-methods approach, combining both quantitative and qual
 - **Dr. Nalin Arachchilage** – [nalin.arachchilage@rmit.edu.au](mailto:nalin.arachchilage@rmit.edu.au)
 - **Prof. Roshan G. Ragel** – [roshanr@eng.pdn.ac.lk](mailto:roshanr@eng.pdn.ac.lk)
 
----
-
-## Useful Links
+## Links
 
 - 🔗 [Project Repository](https://github.com/cepdnaclk/e19-4yp-Putting-Privacy-into-Practice)
 - 🔗 [Project Page](https://cepdnaclk.github.io/e19-4yp-Putting-Privacy-into-Practice)
