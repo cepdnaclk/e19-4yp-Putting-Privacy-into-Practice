@@ -136,21 +136,21 @@ This study adopts a mixed-methods approach, combining both quantitative and qual
 
 ## Team Members
 
-- **E/19/105** – M.H.M. Fahman – [e19105@eng.pdn.ac.lk](mailto:e19105@eng.pdn.ac.lk)
-- **E/19/106** – M.F.M. Faseeh – [e19106@eng.pdn.ac.lk](mailto:e19106@eng.pdn.ac.lk)
-- **E/19/247** – S.M. Musthak – [e19247@eng.pdn.ac.lk](mailto:e19247@eng.pdn.ac.lk)
+**E/19/105** – M.H.M. Fahman – [e19105@eng.pdn.ac.lk](mailto:e19105@eng.pdn.ac.lk)
+**E/19/106** – M.F.M. Faseeh – [e19106@eng.pdn.ac.lk](mailto:e19106@eng.pdn.ac.lk)
+**E/19/247** – S.M. Musthak – [e19247@eng.pdn.ac.lk](mailto:e19247@eng.pdn.ac.lk)
 
 ## Supervisors
 
-- **Dr. Nalin Arachchilage** – [nalin.arachchilage@rmit.edu.au](mailto:nalin.arachchilage@rmit.edu.au)
-- **Prof. Roshan G. Ragel** – [roshanr@eng.pdn.ac.lk](mailto:roshanr@eng.pdn.ac.lk)
+**Dr. Nalin Arachchilage** – [nalin.arachchilage@rmit.edu.au](mailto:nalin.arachchilage@rmit.edu.au)
+**Prof. Roshan G. Ragel** – [roshanr@eng.pdn.ac.lk](mailto:roshanr@eng.pdn.ac.lk)
 
 ## Links
 
-- 🔗 [Project Repository](https://github.com/cepdnaclk/e19-4yp-Putting-Privacy-into-Practice)
-- 🔗 [Project Page](https://cepdnaclk.github.io/e19-4yp-Putting-Privacy-into-Practice)
-- 🏛️ [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
-- 🎓 [University of Peradeniya](https://eng.pdn.ac.lk/)
+🔗 [Project Repository](https://github.com/cepdnaclk/e19-4yp-Putting-Privacy-into-Practice)
+🔗 [Project Page](https://cepdnaclk.github.io/e19-4yp-Putting-Privacy-into-Practice)
+🏛️ [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
+🎓 [University of Peradeniya](https://eng.pdn.ac.lk/)
 
 [//]: # "Note: Uncomment each once you uploaded the files to the repository"
 
