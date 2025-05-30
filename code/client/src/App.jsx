@@ -5,15 +5,20 @@ import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import "./App.css";
 import "@fontsource/inter";
-
+import AuthRedirect from "./components/AuthRedirect";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public routes. */}
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Private routes. */}
+        <Route element={<AuthRedirect />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
