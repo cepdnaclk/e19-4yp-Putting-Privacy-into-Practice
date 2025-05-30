@@ -72,11 +72,12 @@ exports.login = async (req, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production', // true in production(https)
         sameSite: 'Strict',
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        maxAge: 48 * 60 * 60 * 1000, // 2 day
       })
       .json({
         message: 'Login successful',
         user: { id: user._id, email: user.email },
+        token,
       });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
@@ -87,7 +88,7 @@ exports.login = async (req, res) => {
 exports.logout = async (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: true, // make sure this matches how the cookie was set
+    secure: process.env.NODE_ENV === 'production', // make sure this matches how the cookie was set
     sameSite: 'Strict', // also match this
   });
 

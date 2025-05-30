@@ -23,7 +23,6 @@ export default function PrincipleCard({ title, description, onClick, Icon }) {
         hover:shadow-lg 
         hover:shadow-blue-900/20
         hover:-translate-y-1
-        ${isHovered ? "bg-[#252d5c]" : ""}
         flex flex-col items-center text-center
       `}
       onClick={onClick}
