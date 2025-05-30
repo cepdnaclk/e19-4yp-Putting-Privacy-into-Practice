@@ -7,22 +7,47 @@ import {
   Users,
   ShieldCheck,
 } from "lucide-react";
-import SidebarItem from "./SidebarItem";
 import { useState } from "react";
+import SidebarItem from "./SidebarItem";
+import Button from "./Button";
+import { config } from "../utils/config";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Sidebar() {
   const [user, setUser] = useState({
     // TODO: Fetch user data from API
-    name: "Alex Morgan",
+    name: "Mohamed Fahman",
     role: "Administrator",
   });
 
+  const navigate = useNavigate();
+
   const isAdmin = user.role === "Administrator";
 
+  function handleLogout() {
+    axios
+      .post(
+        `${config.serverBaseUrl}/api/auth/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Logout failed: ", error.response);
+        navigate("/");
+      });
+  }
+
   return (
-    <aside className="w-60 bg-[#1e244c] h-screen p-4 flex flex-col justify-between font-inter text-white">
+    <aside className="w-60 bg-[#1e244c] h-screen p-5 flex flex-col justify-between items-center font-inter">
       <div>
-        <h2 className="text-xl font-semibold mb-6 tracking-wide text-blue-300">
+        <h2 className="text-2xl font-semibold mt-3 mb-6 tracking-wide text-white">
           GDPR Guard
         </h2>
 
@@ -60,7 +85,7 @@ export default function Sidebar() {
           <p>{user.name}</p>
           <p className="text-xs text-blue-200">{user.role}</p>
         </div>
-        <SidebarItem icon={LogOut} label="Logout" to="/logout" />
+        <Button onClick={handleLogout}>Logout</Button>
       </div>
     </aside>
   );
