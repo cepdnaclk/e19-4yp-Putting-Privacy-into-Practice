@@ -1,5 +1,6 @@
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
+const questionRoutes = require('./routes/questionRoutes');
 const database = require('./config/database');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -31,6 +32,7 @@ app.use(
 );
 
 app.use('/api/auth', userRoutes);
+app.use('/api', questionRoutes);
 
 // default route
 app.get('/', (req, res) => {
