@@ -94,3 +94,12 @@ exports.logout = async (req, res) => {
 
   return res.status(200).json({ message: 'Logged out successfully' });
 };
+
+exports.getUsersCount = async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+};

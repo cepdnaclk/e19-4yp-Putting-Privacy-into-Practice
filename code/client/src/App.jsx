@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
+import Principle from "./pages/Principle";
 import "./App.css";
 import "@fontsource/inter";
 import AuthRedirect from "./components/AuthRedirect";
@@ -18,6 +19,7 @@ function App() {
         {/* Private routes. */}
         <Route element={<AuthRedirect />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/principle" element={<Principle />} />
         </Route>
       </Routes>
     </BrowserRouter>
