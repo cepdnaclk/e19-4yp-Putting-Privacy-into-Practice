@@ -82,7 +82,7 @@ export default function Signup() {
   );
 
   return (
-    <div className="flex min-h-screen overflow-hidden">
+    <div className="flex min-h-screen overflow-hidden bg-white">
       <div className="w-1/2 h-screen">
         <img
           src={devImage}

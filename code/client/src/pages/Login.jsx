@@ -41,7 +41,7 @@ export default function Login() {
         console.log(response.data);
         if (response.status === 200) {
           localStorage.setItem("token", response.data.token);
-          navigate("/dashboard");
+          navigate("/admin/dashboard");
         }
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen overflow-hidden">
+    <div className="flex min-h-screen overflow-hidden bg-white">
       <div className="w-1/2 h-screen">
         <img
           src={devImage}
