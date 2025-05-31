@@ -45,16 +45,20 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="w-60 bg-[#1e244c] h-screen p-5 flex flex-col justify-between items-center font-inter">
+    <aside className="w-60 bg-[#1e244c] h-screen p-5 flex flex-col justify-between items-center font-inter overflow-auto">
       <div>
-        <h2 className="text-2xl font-semibold mt-3 mb-6 tracking-wide text-white">
+        <h2 className="text-2xl font-semibold mt-3 mb-6 tracking-wide text-white text-center">
           GDPR Guard
         </h2>
 
         <nav className="space-y-1">
-          <SidebarItem icon={Home} label="Dashboard" to="/dashboard" />
-          <SidebarItem icon={BookOpenCheck} label="Questions" to="/questions" />
-          <SidebarItem icon={Book} label="Resources" to="/resources" />
+          <SidebarItem icon={Home} label="Dashboard" to="/admin/dashboard" />
+          <SidebarItem
+            icon={BookOpenCheck}
+            label="Questions"
+            to="/admin/questions"
+          />
+          <SidebarItem icon={Book} label="Resources" to="/admin/resources" />
 
           {isAdmin && (
             <>

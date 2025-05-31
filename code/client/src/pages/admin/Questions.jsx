@@ -1,5 +1,6 @@
-import Layout from "../components/Layout";
-import PrincipleCard from "../components/PrincipleCard";
+import { useState } from "react";
+import Layout from "../../components/Layout";
+import PrincipleCard from "../../components/PrincipleCard";
 import {
   Scale,
   FileLock,
@@ -9,15 +10,17 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-export default function Dashboard() {
+export default function Questions() {
+  const [active, setActive] = useState("Dashboard");
+
   return (
     <Layout>
       <div className="p-6">
-        <h1 className="text-2xl font-bold text-[#1e244c] mb-6">
-          GDPR Principles
+        <h1 className="text-3xl font-bold text-[#1e244c] mb-6 mt-2">
+          GDPR Questions
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-10">
           <PrincipleCard
             title="Lawfulness, Fairness and Transparency"
             description="Personal data must be processed lawfully, fairly and in a transparent manner."
