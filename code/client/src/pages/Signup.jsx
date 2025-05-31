@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import FormField from "../components/FormField";
 import { useEffect, useRef, useState } from "react";
 import AlertBanner from "../components/AlertBanner";
+import { config } from "../utils/config";
 import axios from "axios";
 
 export default function Signup() {
@@ -44,7 +45,7 @@ export default function Signup() {
     }
 
     axios
-      .post("/api/auth/register", {
+      .post(`${config.serverBaseUrl}/api/auth/register`, {
         username: username,
         email: email,
         password: password,
@@ -55,7 +56,6 @@ export default function Signup() {
         setErrorMsg("");
       })
       .catch((error) => {
-        console.error("SignUp failed: ", error.response);
         if (error.response.data.message) {
           setErrorMsg(error.response.data.message);
         } else {
@@ -82,7 +82,7 @@ export default function Signup() {
   );
 
   return (
-    <div className="flex min-h-screen overflow-hidden">
+    <div className="flex min-h-screen overflow-hidden bg-white">
       <div className="w-1/2 h-screen">
         <img
           src={devImage}

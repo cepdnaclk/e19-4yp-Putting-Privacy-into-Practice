@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const { generateToken } = require('../utils/jwt');
 
 // Register a new user
 exports.register = async (req, res) => {
@@ -65,15 +66,31 @@ exports.login = async (req, res) => {
     if (!isMatch)
       return res.status(401).json({ message: 'Invalid credentials' });
 
-    res.status(200).json({
-      message: 'Login successful',
-      user: {
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-      },
-    });
+    const token = generateToken({ id: user._id });
+    res
+      .cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // true in production(https)
+        sameSite: 'Strict',
+        maxAge: 48 * 60 * 60 * 1000, // 2 day
+      })
+      .json({
+        message: 'Login successful',
+        user: { id: user._id, email: user.email },
+        token,
+      });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
+};
+
+// Logout
+exports.logout = async (req, res) => {
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production', // make sure this matches how the cookie was set
+    sameSite: 'Strict', // also match this
+  });
+
+  return res.status(200).json({ message: 'Logged out successfully' });
 };

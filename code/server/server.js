@@ -1,13 +1,12 @@
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
-const app = express();
-
 const database = require('./config/database');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
+const app = express();
 dotenv.config();
 const PORT = process.env.PORT;
 
