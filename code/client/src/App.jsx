@@ -18,8 +18,8 @@ function App() {
 
         {/* Private routes. */}
         <Route element={<AuthRedirect />}>
-          <Route path="admin/dashboard" element={<Dashboard />} />
-          <Route path="admin/questions" element={<Questions />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/questions" element={<Questions />} />
         </Route>
       </Routes>
     </BrowserRouter>

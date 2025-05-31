@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Layout from "../../components/Layout";
 import PrincipleCard from "../../components/PrincipleCard";
 import {
@@ -11,8 +10,6 @@ import {
 } from "lucide-react";
 
 export default function Questions() {
-  const [active, setActive] = useState("Dashboard");
-
   return (
     <Layout>
       <div className="p-6">
