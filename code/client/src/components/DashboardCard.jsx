@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function DashboardCard({ title, value, Icon }) {
+export default function DashboardCard({ title, value, Icon, children }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -8,7 +8,7 @@ export default function DashboardCard({ title, value, Icon }) {
       className={`w-full sm:w-[220px] md:w-[240px] lg:w-[260px]
                   rounded-2xl p-5 border
                   transition-all duration-300 ease-in-out
-                  flex items-center space-x-4 cursor-pointer
+                  cursor-pointer
                   ${
                     isHovered
                       ? "bg-[#252d5c] shadow-lg border-blue-800"
@@ -18,24 +18,34 @@ export default function DashboardCard({ title, value, Icon }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div
-        className={`p-3 rounded-full transition-colors duration-300
-                    ${isHovered ? "bg-blue-600" : "bg-blue-100"}`}
-      >
-        <Icon size={30} color={isHovered ? "#ffffff" : "#1e3a8a"} />
-      </div>
-      <div>
-        <p className={`text-sm ${isHovered ? "text-white" : "text-[#252d5c]"}`}>
-          {title}
-        </p>
-        <p
-          className={`text-xl font-bold ${
-            isHovered ? "text-white" : "text-[#252d5c]"
-          }`}
+      <div className="flex items-center space-x-4">
+        <div
+          className={`p-3 rounded-full transition-colors duration-300
+                      ${isHovered ? "bg-blue-600" : "bg-blue-100"}`}
         >
-          {value}
-        </p>
+          <Icon size={30} color={isHovered ? "#ffffff" : "#1e3a8a"} />
+        </div>
+        <div>
+          <p
+            className={`text-sm ${isHovered ? "text-white" : "text-[#252d5c]"}`}
+          >
+            {title}
+          </p>
+          <p
+            className={`text-xl font-bold ${
+              isHovered ? "text-white" : "text-[#252d5c]"
+            }`}
+          >
+            {value}
+          </p>
+        </div>
       </div>
+
+      {children && (
+        <div className="mt-2 w-full">
+          {typeof children === "function" ? children(isHovered) : children}
+        </div>
+      )}
     </div>
   );
 }
