@@ -7,6 +7,7 @@ import {
   Target,
   Database,
   ShieldCheck,
+  ClipboardList,
 } from "lucide-react";
 
 export default function Questions() {
@@ -58,6 +59,13 @@ export default function Questions() {
             description="Personal data must be processed in a manner that ensures appropriate security."
             onClick={() => {}}
             Icon={ShieldCheck}
+          />
+
+          <PrincipleCard
+            title="Accountability"
+            description="Organizations must take responsibility for data processing and demonstrate GDPR compliance."
+            onClick={() => {}}
+            Icon={ClipboardList}
           />
         </div>
       </div>
