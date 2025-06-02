@@ -2,15 +2,22 @@ import { useEffect, useState } from "react";
 import api from "../lib/axios";
 import { Outlet, Navigate } from "react-router-dom";
 
-export default function AuthRedirect() {
+export default function AuthRedirect({ requiredRole }) {
   const [authChecked, setAuthChecked] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     api
       .get("/api/auth/check")
-      .then(() => setAuthenticated(true))
-      .catch(() => setAuthenticated(false))
+      .then((res) => {
+        setAuthenticated(true);
+        setUserRole(res.data.user.role);
+      })
+      .catch(() => {
+        setAuthenticated(false);
+        setUserRole(null);
+      })
       .finally(() => setAuthChecked(true));
   }, []);
 
@@ -18,5 +25,13 @@ export default function AuthRedirect() {
     return <p>Loading.</p>;
   }
 
-  return authenticated ? <Outlet /> : <Navigate to="/" />;
+  if (!authenticated) {
+    return <Navigate to="/" />;
+  }
+
+  if (requiredRole && userRole !== requiredRole) {
+    return <Navigate to="/" />;
+  }
+
+  return <Outlet />;
 }

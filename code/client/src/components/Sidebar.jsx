@@ -89,7 +89,9 @@ export default function Sidebar() {
           <p>{user.name}</p>
           <p className="text-xs text-blue-200">{user.role}</p>
         </div>
-        <Button onClick={handleLogout}>Logout</Button>
+        <Button onClick={handleLogout} color="white">
+          Logout
+        </Button>
       </div>
     </aside>
   );

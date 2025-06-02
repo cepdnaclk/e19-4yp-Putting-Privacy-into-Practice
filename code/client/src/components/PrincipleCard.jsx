@@ -24,7 +24,7 @@ export default function PrincipleCard({ title, description, onClick, Icon }) {
         hover:-translate-y-1
         flex flex-col items-center text-center
       `}
-      onClick={onClick}
+      onClick={() => onClick(title, description, Icon)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
