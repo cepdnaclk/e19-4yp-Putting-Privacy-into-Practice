@@ -19,13 +19,12 @@ export default function PrincipleCard({ title, description, onClick, Icon }) {
         duration-300 
         border 
         border-transparent
-        hover:border-blue-400 
         hover:shadow-lg 
         hover:shadow-blue-900/20
         hover:-translate-y-1
         flex flex-col items-center text-center
       `}
-      onClick={onClick}
+      onClick={() => onClick(title, description, Icon)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

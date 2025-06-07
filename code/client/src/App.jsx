@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/admin/Dashboard";
+import QuestionsGroup from "./pages/admin/QuestionsGroup";
 import Questions from "./pages/admin/Questions";
 import "./App.css";
 import "@fontsource/inter";
@@ -16,10 +17,11 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
 
-        {/* Private routes. */}
-        <Route element={<AuthRedirect />}>
+        {/* Private routes for admin. */}
+        <Route element={<AuthRedirect requiredRole="admin" />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/questions" element={<Questions />} />
+          <Route path="/admin/questions" element={<QuestionsGroup />} />
+          <Route path="/admin/questions/:group" element={<Questions />} />
         </Route>
       </Routes>
     </BrowserRouter>
