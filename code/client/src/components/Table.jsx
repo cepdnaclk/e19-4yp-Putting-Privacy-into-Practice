@@ -28,9 +28,9 @@ export default function Table({
   };
 
   return (
-    <div>
-      <div className="overflow-x-auto shadow rounded-lg border border-gray-200">
-        <table className="min-w-full bg-white text-left text-sm">
+    <div className="w-full">
+      <div className="overflow-x-auto shadow rounded-lg border border-gray-200 w-full">
+        <table className="w-full bg-white text-left text-sm">
           <thead className="bg-[#252d5c] text-white">
             <tr>
               {columns.map((col) => (

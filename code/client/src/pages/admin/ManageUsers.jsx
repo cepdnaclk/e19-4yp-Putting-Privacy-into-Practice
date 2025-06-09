@@ -9,42 +9,36 @@ export default function ManageUsers() {
 
   useEffect(() => {
     if (userData && Array.isArray(userData)) {
-      const initializedUsers = userData.map((user) => ({
-        ...user,
-        isActive: user.isActive ?? true,
-      }));
-      setUsers(initializedUsers);
+      setUsers(userData);
     }
   }, [userData]);
 
-  const toggleActive = (id) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) =>
-        user._id === id ? { ...user, isActive: !user.isActive } : user
-      )
+  const handleDeleteClick = async (id) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
     );
-  };
+    if (!confirmed) return;
 
-  const handleDeleteClick = (id) => {
-    setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+    try {
+      const res = await fetch(`/api/auth/users/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to delete user");
+      }
+
+      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+    } catch (err) {
+      console.error(err);
+      alert("An error occurred while deleting the user.");
+    }
   };
 
   const columns = [
     { field: "username", headerName: "Username" },
     { field: "email", headerName: "E-mail" },
     { field: "role", headerName: "Role" },
-    {
-      field: "active",
-      headerName: "Active",
-      render: (row) => (
-        <input
-          type="checkbox"
-          checked={row.isActive}
-          onChange={() => toggleActive(row._id)}
-          className="form-checkbox h-5 w-5 text-blue-600"
-        />
-      ),
-    },
     {
       field: "actions",
       headerName: "Delete",
@@ -61,7 +55,7 @@ export default function ManageUsers() {
 
   return (
     <Layout>
-      <div className="p-6">
+      <div className="p-6 ml-20 mr-20 w-full">
         <h1 className="text-2xl font-bold text-[#252d5c] mb-6">Manage Users</h1>
 
         {loading ? (
