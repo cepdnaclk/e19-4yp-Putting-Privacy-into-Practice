@@ -10,5 +10,6 @@ router.get('/check', protect, (req, res) => {
 });
 router.post('/logout', userController.logout);
 router.get('/users/count', protect, userController.getUsersCount);
+router.get('/users', protect, userController.getAllUsers);
 
 module.exports = router;

@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema(
       enum: ['user', 'administrator'],
       default: 'user',
     },
+    isActive:{
+      type: Boolean,
+      default: true,
+    },
     password: {
       type: String,
       required: true,
@@ -30,7 +34,7 @@ const userSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // creates createdAt, updatedAt fields, automatic management.
+    timestamps: true,
   }
 );
 

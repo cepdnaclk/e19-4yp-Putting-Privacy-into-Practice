@@ -4,6 +4,7 @@ import Signup from "./pages/Signup";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/admin/Dashboard";
 import Questions from "./pages/admin/Questions";
+import ManageUsers from "./pages/admin/ManageUsers";
 import "./App.css";
 import "@fontsource/inter";
 import AuthRedirect from "./components/AuthRedirect";
@@ -20,6 +21,7 @@ function App() {
         <Route element={<AuthRedirect />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/questions" element={<Questions />} />
+          <Route path="/admin/users" element={<ManageUsers />} />
         </Route>
       </Routes>
     </BrowserRouter>
