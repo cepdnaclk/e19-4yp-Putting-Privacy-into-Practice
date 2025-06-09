@@ -9,7 +9,7 @@ export default function ManageUsers() {
 
   useEffect(() => {
     if (userData && Array.isArray(userData)) {
-      setUsers(userData); // No need to add isActive
+      setUsers(userData);
     }
   }, [userData]);
 

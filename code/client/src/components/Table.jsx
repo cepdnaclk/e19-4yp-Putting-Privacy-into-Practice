@@ -4,7 +4,7 @@ export default function Table({
   columns,
   data,
   getRowId,
-  initialPageSize = 10,
+  initialPageSize = 8,
 }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(initialPageSize);
@@ -76,7 +76,7 @@ export default function Table({
             onChange={handlePageSizeChange}
             className="border border-gray-300 rounded px-2 py-1"
           >
-            {[5, 10, 20, 50].map((size) => (
+            {[8, 15, 20, 50].map((size) => (
               <option key={size} value={size}>
                 {size}
               </option>
