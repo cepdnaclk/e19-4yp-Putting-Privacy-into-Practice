@@ -1,0 +1,21 @@
+name: Deploy to EC2
+on:
+  push:
+    branches: [docker]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SSH Key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+          # Make sure 'SSH_KEY' is defined in your repository's Secrets settings (Settings > Secrets and variables > Actions)
+      - name: Deploy via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} "
+            cd /home/ubuntu/your-repo/code &&
+            git pull &&
+            sudo docker-compose up -d --build
+          "
