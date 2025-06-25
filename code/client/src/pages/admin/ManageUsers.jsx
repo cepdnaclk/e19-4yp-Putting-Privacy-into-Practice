@@ -60,7 +60,10 @@ export default function ManageUsers() {
         <h1 className="text-2xl font-bold text-[#252d5c] mb-6">Manage Users</h1>
 
         {loading ? (
-          <LoadingSpinner />
+          <div aria-live="polite">
+            <span className="sr-only">Loading, please wait...</span>
+            <LoadingSpinner />
+          </div>
         ) : error ? (
           <p className="text-red-500">Error fetching users.</p>
         ) : (

@@ -23,7 +23,11 @@ export default function AuthRedirect({ requiredRole }) {
   }, []);
 
   if (!authChecked) {
-    return <LoadingSpinner />;
+    return (
+      <div role="status" aria-live="polite">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (!authenticated) {
