@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../lib/axios";
 import { Outlet, Navigate } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function AuthRedirect({ requiredRole }) {
   const [authChecked, setAuthChecked] = useState(false);
@@ -22,7 +23,7 @@ export default function AuthRedirect({ requiredRole }) {
   }, []);
 
   if (!authChecked) {
-    return <p>Loading.</p>;
+    return <LoadingSpinner />;
   }
 
   if (!authenticated) {

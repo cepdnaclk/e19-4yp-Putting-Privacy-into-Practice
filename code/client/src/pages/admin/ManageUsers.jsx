@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import useFetch from "../../hooks/useFetch";
 import Table from "../../components/Table";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function ManageUsers() {
   const { data: userData, loading, error } = useFetch("/api/auth/users");
@@ -59,7 +60,7 @@ export default function ManageUsers() {
         <h1 className="text-2xl font-bold text-[#252d5c] mb-6">Manage Users</h1>
 
         {loading ? (
-          <p className="text-gray-500">Loading...</p>
+          <LoadingSpinner />
         ) : error ? (
           <p className="text-red-500">Error fetching users.</p>
         ) : (
