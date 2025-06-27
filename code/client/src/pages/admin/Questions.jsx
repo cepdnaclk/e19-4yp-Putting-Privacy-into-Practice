@@ -17,7 +17,9 @@ export default function Questions() {
     <Layout>
       <div className="w-full p-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold text-[#1e244c] mt-2">{title}</h1>
+          <h1 className="text-3xl font-bold text-[#1e244c] mb-6 mt-2 text-left">
+            {title}
+          </h1>
           <Button
             fullSpan={false}
             onClick={() => setShowAddQuestionForm((state) => !state)}
@@ -26,7 +28,9 @@ export default function Questions() {
           </Button>
         </div>
 
-        {showAddQuestionForm && <QuestionForm />}
+        {showAddQuestionForm && (
+          <QuestionForm onCloseForm={setShowAddQuestionForm} />
+        )}
       </div>
     </Layout>
   );

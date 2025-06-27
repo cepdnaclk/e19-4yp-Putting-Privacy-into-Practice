@@ -23,7 +23,7 @@ export default function QuestionsGroup() {
 
   return (
     <Layout>
-      <div className="p-6">
+      <div className="w-full p-6">
         <h1 className="text-3xl font-bold text-[#1e244c] mb-6 mt-2 text-left">
           GDPR Questions
         </h1>

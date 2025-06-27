@@ -2,11 +2,16 @@ import { useState } from "react";
 import FormField from "./FormField";
 import Button from "./Button";
 
-export default function QuestionForm() {
+export default function QuestionForm({ onCloseForm }) {
   const [question, setQuestion] = useState("");
   const [type, setType] = useState("mcq");
   const [complexity, setComplexity] = useState("easy");
   const [mcqOptions, setMcqOptions] = useState({});
+
+  function closeQuestionForm() {
+    onCloseForm(false);
+  }
+
   return (
     <div className="border border-gray-300 p-4 rounded-xl">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-10">
@@ -55,7 +60,9 @@ export default function QuestionForm() {
       )}
       <div className="flex space-x-4">
         <Button>Save</Button>
-        <Button color="white">Cancel</Button>
+        <Button color="white" onClick={closeQuestionForm}>
+          Cancel
+        </Button>
       </div>
     </div>
   );
