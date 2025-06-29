@@ -13,7 +13,7 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
     C: "",
     D: "",
   });
-  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState("A"); // default to A for MCQ
 
   async function handleSave() {
     if (!question.trim()) {
@@ -36,7 +36,7 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
         return;
       }
     } else if (type === "essay") {
-      if (!correctAnswer.trim()) {
+      if (!correctAnswer || !correctAnswer.trim()) {
         alert("Please enter the correct answer for the short answer question.");
         return;
       }
@@ -78,7 +78,15 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
           type="select"
           options={["mcq", "essay"]}
           labelSize="m"
-          onSelect={setType}
+          onSelect={(val) => {
+            setType(val);
+            if (val === "mcq") {
+              setCorrectAnswer("A"); // reset to default when switching to MCQ
+            } else {
+              setCorrectAnswer(""); // reset for essay
+            }
+          }}
+          value={type}
         />
         <FormField
           label="Complexity"
@@ -86,6 +94,7 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
           options={["easy", "medium", "hard"]}
           labelSize="m"
           onSelect={setComplexity}
+          value={complexity}
         />
         {type === "mcq" && (
           <>
@@ -94,24 +103,28 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
               type="text"
               labelSize="m"
               onChange={(val) => setMcqOptions({ ...mcqOptions, A: val })}
+              value={mcqOptions.A}
             />
             <FormField
               label="Option B"
               type="text"
               labelSize="m"
               onChange={(val) => setMcqOptions({ ...mcqOptions, B: val })}
+              value={mcqOptions.B}
             />
             <FormField
               label="Option C"
               type="text"
               labelSize="m"
               onChange={(val) => setMcqOptions({ ...mcqOptions, C: val })}
+              value={mcqOptions.C}
             />
             <FormField
               label="Option D"
               type="text"
               labelSize="m"
               onChange={(val) => setMcqOptions({ ...mcqOptions, D: val })}
+              value={mcqOptions.D}
             />
             <FormField
               label="Correct Answer"
