@@ -11,5 +11,6 @@ router.get(
   protect,
   questionController.getQuestionsByPrinciple
 );
+router.delete('/questions/:id', protect, questionController.deleteQuestion);
 
 module.exports = router;

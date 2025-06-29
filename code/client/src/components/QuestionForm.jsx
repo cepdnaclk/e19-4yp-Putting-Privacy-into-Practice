@@ -13,7 +13,7 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
     C: "",
     D: "",
   });
-  const [correctAnswer, setCorrectAnswer] = useState("A"); // default to A for MCQ
+  const [correctAnswer, setCorrectAnswer] = useState("A");
 
   async function handleSave() {
     if (!question.trim()) {

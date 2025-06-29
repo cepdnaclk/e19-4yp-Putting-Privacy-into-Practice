@@ -3,11 +3,26 @@ import useFetch from "../../hooks/useFetch";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useState } from "react";
 import AlertBanner from "../../components/AlertBanner";
+import axios from "axios";
 
 export default function Show({ title, principle }) {
   const url = `/api/questions/${principle}`;
-  const { data: questions, loading, error } = useFetch(url);
+  const { data: questions, loading, error, refetch } = useFetch(url);
   const [expandedCards, setExpandedCards] = useState({});
+  const [deleteError, setDeleteError] = useState(null);
+
+  const handleDelete = async (id, e) => {
+    e.stopPropagation();
+    try {
+      await axios.delete(`/api/questions/${id}`);
+      refetch();
+    } catch (err) {
+      setDeleteError(
+        err.response?.data?.message || "Failed to delete question"
+      );
+      console.error("Delete error:", err);
+    }
+  };
 
   const toggleCard = (id) => {
     setExpandedCards((prev) => ({
@@ -27,10 +42,24 @@ export default function Show({ title, principle }) {
 
   return (
     <div className="w-full px-4 sm:px-6 py-8">
+      {deleteError && (
+        <div className="mb-4">
+          <AlertBanner
+            label={deleteError}
+            type="error"
+            onClose={() => setDeleteError(null)}
+          />
+        </div>
+      )}
+
       <div className="mb-8 w-full">
-        <h1 className="text-3xl font-bold text-gray-900">Questions</h1>
+        <h1 className="text-3xl font-bold text-gray-900">
+          {title || "Questions"}
+        </h1>
         <p className="mt-2 text-gray-600">
-          Review and manage your GDPR compliance questions
+          {principle
+            ? `GDPR Principle: ${principle.replace(/_/g, " ")}`
+            : "Review and manage your GDPR compliance questions"}
         </p>
       </div>
 
@@ -51,7 +80,7 @@ export default function Show({ title, principle }) {
                       {question.question}
                     </h3>
                     <div className="flex flex-wrap gap-2 mt-3">
-                      {"type" in question && question.type && (
+                      {question.type && (
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                           {question.type.toUpperCase()}
                         </span>
@@ -82,10 +111,7 @@ export default function Show({ title, principle }) {
                     <button
                       title="Delete"
                       className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full transition"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Handle delete
-                      }}
+                      onClick={(e) => handleDelete(question._id, e)}
                     >
                       <Trash2 size={18} />
                     </button>

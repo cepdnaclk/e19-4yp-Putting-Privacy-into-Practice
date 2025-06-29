@@ -67,3 +67,17 @@ exports.getQuestionsByPrinciple = async (req, res) => {
     });
   }
 };
+
+exports.deleteQuestion = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const question = await Question.findByIdAndDelete(id);
+    if (!question) {
+      return res.status(404).json({ message: 'Question not found' });
+    }
+    res.status(200).json({ message: 'Question deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
