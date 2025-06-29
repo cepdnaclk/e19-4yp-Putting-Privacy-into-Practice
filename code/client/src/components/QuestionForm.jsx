@@ -3,7 +3,7 @@ import FormField from "./FormField";
 import Button from "./Button";
 import axios from "axios";
 
-export default function QuestionForm({ onCloseForm }) {
+export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
   const [question, setQuestion] = useState("");
   const [type, setType] = useState("mcq");
   const [complexity, setComplexity] = useState("easy");
@@ -47,6 +47,7 @@ export default function QuestionForm({ onCloseForm }) {
       complexity,
       options: type === "mcq" ? mcqOptions : {},
       correctAnswer,
+      principle: defaultPrinciple,
     };
 
     try {

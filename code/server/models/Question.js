@@ -22,6 +22,9 @@ const questionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  principle: {
+    type: String,
+  },
 });
 
 const Question = mongoose.model('Question', questionSchema);
