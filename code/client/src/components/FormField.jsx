@@ -93,6 +93,10 @@ function FormField(
           rows={6}
           cols={10}
           placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
+          required={required}
         />
       )}
     </div>

@@ -4,5 +4,13 @@ const questionController = require('../controllers/questionController');
 const { protect } = require('../middleware/authMiddleware');
 
 router.get('/questions/count', protect, questionController.getQuestionsCount);
+router.post('/questions', protect, questionController.createQuestion);
+router.get('/questions', protect, questionController.getAllQuestions);
+router.get(
+  '/questions/:principle',
+  protect,
+  questionController.getQuestionsByPrinciple
+);
+router.delete('/questions/:id', protect, questionController.deleteQuestion);
 
 module.exports = router;
