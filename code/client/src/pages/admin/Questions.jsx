@@ -20,7 +20,7 @@ export default function Questions() {
         <div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold text-[#1e244c] mt-2 text-left">
+              <h1 className="text-3xl font-bold text-[#252d5c] mt-2 text-left">
                 {title}
               </h1>
             </div>

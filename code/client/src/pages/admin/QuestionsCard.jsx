@@ -53,13 +53,11 @@ export default function Show({ title, principle }) {
       )}
 
       <div className="mb-8 w-full">
-        <h1 className="text-3xl font-bold text-gray-900">
+        {/* <h1 className="text-3xl font-bold text-gray-900">
           {title || "Questions"}
-        </h1>
-        <p className="mt-2 text-gray-600">
-          {principle
-            ? `GDPR Principle: ${principle.replace(/_/g, " ")}`
-            : "Review and manage your GDPR compliance questions"}
+        </h1> */}
+        <p className="mt-2 text-[#252d5c]">
+          Review and manage your GDPR compliance questions
         </p>
       </div>
 
