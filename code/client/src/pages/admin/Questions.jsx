@@ -19,8 +19,8 @@ export default function Questions() {
       <div className="flex flex-col space-y-8 p-6 w-full">
         <div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold text-[#252d5c] mt-2 text-left">
+            <div className="flex items-center">
+              <h1 className="text-3xl font-bold text-[#252d5c] mt-2 text-left mb-6">
                 {title}
               </h1>
             </div>

@@ -28,7 +28,7 @@ export default function PrincipleCard({ title, description, onClick, Icon }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Icon color={`${isHovered ? "white" : "black"}`} size={80} />
+      <Icon color={`${isHovered ? "white" : "#252d5c"}`} size={80} />
       <h3
         className={`text-lg font-semibold ${
           isHovered ? "text-white" : "text-blue-900"
