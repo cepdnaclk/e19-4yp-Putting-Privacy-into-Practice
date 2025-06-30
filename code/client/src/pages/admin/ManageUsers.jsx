@@ -58,7 +58,7 @@ export default function ManageUsers() {
     <Layout>
       <div className="p-6 w-full">
         <h1 className="text-3xl font-bold text-[#252d5c] mt-2 text-left mb-6">
-          Dashboard
+          Manage Users
         </h1>
 
         {loading ? (
