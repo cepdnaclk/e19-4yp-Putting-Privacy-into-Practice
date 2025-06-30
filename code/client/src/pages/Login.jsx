@@ -41,7 +41,8 @@ export default function Login() {
         console.log(response.data);
         if (response.status === 200) {
           localStorage.setItem("token", response.data.token);
-          navigate("/admin/dashboard");
+          if (response.data.user.role === "admin") navigate("/admin/dashboard");
+          else navigate("/user/levelBoard");
         }
       })
       .catch((error) => {

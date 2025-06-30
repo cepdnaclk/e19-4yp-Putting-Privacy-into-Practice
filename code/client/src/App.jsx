@@ -9,6 +9,8 @@ import ManageUsers from "./pages/admin/ManageUsers";
 import "./App.css";
 import "@fontsource/inter";
 import AuthRedirect from "./components/AuthRedirect";
+import LevelBoard from "./pages/user/LevelBoard";
+
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +26,11 @@ function App() {
           <Route path="/admin/questions" element={<QuestionsGroup />} />
           <Route path="/admin/questions/:group" element={<Questions />} />
           <Route path="/admin/users" element={<ManageUsers />} />
+        </Route>
+
+        {/* Private routes for users. */}
+        <Route element={<AuthRedirect requiredRole="user" />}>
+          <Route path="/user/levelBoard" element={<LevelBoard />} />
         </Route>
       </Routes>
     </BrowserRouter>
