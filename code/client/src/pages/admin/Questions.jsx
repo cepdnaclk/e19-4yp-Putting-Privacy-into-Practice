@@ -1,36 +1,48 @@
 import Layout from "../../components/Layout";
-import { useLocation, useParams } from "react-router-dom";
-import iconMap from "../../constants/iconMap";
+import { useLocation } from "react-router-dom";
 import Button from "../../components/Button";
 import { useState } from "react";
 import QuestionForm from "../../components/QuestionForm";
+import QuestionsCard from "../admin/QuestionsCard";
 
 export default function Questions() {
   const location = useLocation();
-  const { group } = useParams();
-  const { title, description } = location.state || {};
-  const Icon = iconMap[group];
+
+  const { title, principle: principleValue } = location.state || {};
+
+  const principle = principleValue;
 
   const [showAddQuestionForm, setShowAddQuestionForm] = useState(false);
 
   return (
     <Layout>
-      <div className="w-full p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold text-[#1e244c] mb-6 mt-2 text-left">
-            {title}
-          </h1>
-          <Button
-            fullSpan={false}
-            onClick={() => setShowAddQuestionForm((state) => !state)}
-          >
-            Add Question
-          </Button>
+      <div className="flex flex-col space-y-8 p-6 w-full">
+        <div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <h1 className="text-3xl font-bold text-[#252d5c] mt-2 text-left">
+                {title}
+              </h1>
+            </div>
+            <Button
+              fullSpan={false}
+              onClick={() => setShowAddQuestionForm((state) => !state)}
+            >
+              Add Question
+            </Button>
+          </div>
+
+          {showAddQuestionForm && (
+            <QuestionForm
+              onCloseForm={() => setShowAddQuestionForm(false)}
+              defaultPrinciple={principle}
+            />
+          )}
         </div>
 
-        {showAddQuestionForm && (
-          <QuestionForm onCloseForm={setShowAddQuestionForm} />
-        )}
+        <div>
+          <QuestionsCard title={title} principle={principle} />
+        </div>
       </div>
     </Layout>
   );
