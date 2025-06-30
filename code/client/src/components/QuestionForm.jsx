@@ -13,31 +13,34 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
     C: "",
     D: "",
   });
+  const [error, setError] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("A");
 
   async function handleSave() {
     if (!question.trim()) {
-      alert("Please enter the question.");
+      setError("Please enter the question.");
       return;
     }
     if (!complexity) {
-      alert("Please select a complexity level.");
+      setError("Please select a complexity level.");
       return;
     }
     if (type === "mcq") {
       for (let key of ["A", "B", "C", "D"]) {
         if (!mcqOptions[key].trim()) {
-          alert(`Please fill Option ${key}.`);
+          setError(`Please fill Option ${key}.`);
           return;
         }
       }
       if (!correctAnswer) {
-        alert("Please select the correct answer for MCQ.");
+        setError("Please select the correct answer for MCQ.");
         return;
       }
     } else if (type === "essay") {
       if (!correctAnswer || !correctAnswer.trim()) {
-        alert("Please enter the correct answer for the short answer question.");
+        setError(
+          "Please enter the correct answer for the short answer question."
+        );
         return;
       }
     }
@@ -52,8 +55,8 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
 
     try {
       await axios.post("/api/questions", payload);
-      alert("Question saved!");
       onCloseForm(false);
+      window.location.reload();
     } catch (err) {
       console.error(err);
       alert("Error saving question");
@@ -81,9 +84,9 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
           onSelect={(val) => {
             setType(val);
             if (val === "mcq") {
-              setCorrectAnswer("A"); // reset to default when switching to MCQ
+              setCorrectAnswer("A");
             } else {
-              setCorrectAnswer(""); // reset for essay
+              setCorrectAnswer("");
             }
           }}
           value={type}
@@ -147,6 +150,7 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
           value={correctAnswer}
         />
       )}
+      {error && <div className="text-red-500 mt-2">{error}</div>}
       <div className="flex space-x-4 mt-4">
         <Button onClick={handleSave}>Save</Button>
         <Button color="white" onClick={closeQuestionForm}>

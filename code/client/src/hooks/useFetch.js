@@ -7,6 +7,7 @@ export default function useFetch(url) {
 
   const fetchData = useCallback(async () => {
     setLoading(true);
+    setData(null);
     setError("");
     try {
       const response = await axios.get(url);
