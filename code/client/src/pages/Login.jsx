@@ -7,8 +7,11 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { config } from "../utils/config";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -38,10 +41,19 @@ export default function Login() {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response.data);
+        const userData = {
+          username: response.data.user.username,
+          email: response.data.user.email,
+          role: response.data.user.role,
+        };
+        login(userData);
         if (response.status === 200) {
           localStorage.setItem("token", response.data.token);
-          navigate("/admin/dashboard");
+          if (response.data.user.role === "user") {
+            navigate("/dashboard");
+          } else if (response.data.user.role === "admin") {
+            navigate("/admin/dashboard");
+          }
         }
       })
       .catch((error) => {

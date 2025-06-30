@@ -7,23 +7,21 @@ import {
   Users,
   ShieldCheck,
 } from "lucide-react";
-import { useState } from "react";
 import SidebarItem from "./SidebarItem";
 import Button from "./Button";
 import { config } from "../utils/config";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 export default function Sidebar() {
-  const [user, setUser] = useState({
-    // TODO: Fetch user data from API
-    name: "Mohamed Fahman",
-    role: "Administrator",
-  });
+  const { user, logout } = useContext(AuthContext);
+  const name = user?.username;
+  const role = user?.role;
+  const isAdmin = role === "admin";
 
   const navigate = useNavigate();
-
-  const isAdmin = user.role === "Administrator";
 
   function handleLogout() {
     axios
@@ -36,10 +34,12 @@ export default function Sidebar() {
       )
       .then((response) => {
         console.log(response.data);
+        logout();
         navigate("/");
       })
       .catch((error) => {
         console.error("Logout failed: ", error.response);
+        logout();
         navigate("/");
       });
   }
@@ -52,42 +52,45 @@ export default function Sidebar() {
         </h2>
 
         <nav className="space-y-1">
-          <SidebarItem icon={Home} label="Dashboard" to="/admin/dashboard" />
-          <SidebarItem
-            icon={BookOpenCheck}
-            label="Questions"
-            to="/admin/questions"
-          />
-          <SidebarItem icon={Book} label="Resources" to="/admin/resources" />
-
           {isAdmin && (
             <>
+              <SidebarItem
+                icon={Home}
+                label="Dashboard"
+                to="/admin/dashboard"
+              />
+              <SidebarItem
+                icon={BookOpenCheck}
+                label="Questions"
+                to="/admin/questions"
+              />
+              <SidebarItem
+                icon={Book}
+                label="Resources"
+                to="/admin/resources"
+              />
               <SidebarItem
                 icon={Users}
                 label="Manage Users"
                 to="/admin/users"
               />
+              <SidebarItem icon={Settings} label="Settings" to="/settings" />
             </>
           )}
 
           {!isAdmin && (
             <>
-              <SidebarItem
-                icon={ShieldCheck}
-                label="My Reports"
-                to="/user/reports"
-              />
+              <SidebarItem icon={Home} label="Dashboard" to="/dashboard" />
+              <SidebarItem icon={BookOpenCheck} label="Report" to="/report" />
             </>
           )}
-
-          <SidebarItem icon={Settings} label="Settings" to="/settings" />
         </nav>
       </div>
 
-      <div className="text-sm text-white">
-        <div className="mb-2">
-          <p>{user.name}</p>
-          <p className="text-xs text-blue-200">{user.role}</p>
+      <div className="text-sm text-white w-full">
+        <div className="mb-2 flex flex-col items-center">
+          <p>{name}</p>
+          <p className="text-xs text-blue-200">{role}</p>
         </div>
         <Button onClick={handleLogout} color="white">
           Logout
