@@ -25,6 +25,11 @@ function App() {
           <Route path="/admin/questions/:group" element={<Questions />} />
           <Route path="/admin/users" element={<ManageUsers />} />
         </Route>
+
+        {/* Private routes for user. */}
+        <Route element={<AuthRedirect requiredRole="user" />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
