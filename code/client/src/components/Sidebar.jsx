@@ -1,12 +1,4 @@
-import {
-  Home,
-  Settings,
-  Book,
-  BookOpenCheck,
-  LogOut,
-  Users,
-  ShieldCheck,
-} from "lucide-react";
+import { Home, Settings, Book, BookOpenCheck, Users } from "lucide-react";
 import SidebarItem from "./SidebarItem";
 import Button from "./Button";
 import { config } from "../utils/config";
