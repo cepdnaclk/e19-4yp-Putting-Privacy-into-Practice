@@ -30,7 +30,9 @@ export default function Dashboard() {
   return (
     <Layout>
       <div className="p-6">
-        <h1 className="text-2xl font-bold text-[#252d5c] mb-6">Overview</h1>
+        <h1 className="text-3xl font-bold text-[#252d5c] mt-2 text-left mb-6">
+          Dashboard
+        </h1>
 
         <div className="flex flex-wrap gap-6 items-start max-w-full">
           <DashboardCard

@@ -31,7 +31,7 @@ function FormField(
       <label
         className={`block ${
           labelSize === "xs" ? "text-xs" : "text-m"
-        } font-bold mb-1`}
+        } font-bold mb-1 text-[#252d5c]`}
       >
         {label}
       </label>

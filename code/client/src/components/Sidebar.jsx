@@ -66,7 +66,7 @@ export default function Sidebar() {
                 label="Manage Users"
                 to="/admin/users"
               />
-              <SidebarItem icon={Settings} label="Settings" to="/settings" />
+              {/* <SidebarItem icon={Settings} label="Settings" to="/settings" /> */}
             </>
           )}
 
@@ -80,7 +80,7 @@ export default function Sidebar() {
       </div>
 
       <div className="text-sm text-white w-full">
-        <div className="mb-2 flex flex-col items-center">
+        <div className="flex flex-col items-center">
           <p>{name}</p>
           <p className="text-xs text-blue-200">{role}</p>
         </div>

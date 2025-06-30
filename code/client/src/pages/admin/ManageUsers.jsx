@@ -56,8 +56,10 @@ export default function ManageUsers() {
 
   return (
     <Layout>
-      <div className="p-6 ml-20 mr-20 w-full">
-        <h1 className="text-2xl font-bold text-[#252d5c] mb-6">Manage Users</h1>
+      <div className="p-6 w-full">
+        <h1 className="text-3xl font-bold text-[#252d5c] mt-2 text-left mb-6">
+          Dashboard
+        </h1>
 
         {loading ? (
           <div aria-live="polite">

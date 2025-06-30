@@ -41,7 +41,7 @@ export default function Show({ title, principle }) {
   if (error) return <AlertBanner label={error} type="error" />;
 
   return (
-    <div className="w-full px-4 sm:px-6 py-8">
+    <div className="w-full px-4 sm:px-6 py-6">
       {deleteError && (
         <div className="mb-4">
           <AlertBanner
@@ -56,7 +56,7 @@ export default function Show({ title, principle }) {
         {/* <h1 className="text-3xl font-bold text-gray-900">
           {title || "Questions"}
         </h1> */}
-        <p className="mt-2 text-[#252d5c]">
+        <p className="text-[#252d5c]">
           Review and manage your GDPR compliance questions
         </p>
       </div>

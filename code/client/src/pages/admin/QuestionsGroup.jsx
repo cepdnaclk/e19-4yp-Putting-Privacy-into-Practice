@@ -19,8 +19,8 @@ export default function QuestionsGroup() {
   return (
     <Layout>
       <div className="w-full p-6">
-        <h1 className="text-3xl font-bold text-[#1e244c] mb-6 mt-2 text-left">
-          GDPR Questions
+        <h1 className="text-3xl font-bold text-[#252d5c] mt-2 text-left mb-6">
+          Dashboard
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-10">
