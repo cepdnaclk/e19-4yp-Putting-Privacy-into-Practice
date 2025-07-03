@@ -6,10 +6,11 @@ import Dashboard from "./pages/admin/Dashboard";
 import QuestionsGroup from "./pages/admin/QuestionsGroup";
 import Questions from "./pages/admin/Questions";
 import ManageUsers from "./pages/admin/ManageUsers";
-import Resources from "./pages/admin/Resources";
+import Resources from "./pages/admin/resources/Resources";
 import "./App.css";
 import "@fontsource/inter";
 import AuthRedirect from "./components/AuthRedirect";
+import ResourcesGroup from "./pages/admin/resources/ResourcesGroup";
 function App() {
   return (
     <BrowserRouter>
@@ -23,8 +24,9 @@ function App() {
         <Route element={<AuthRedirect requiredRole="admin" />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/questions" element={<QuestionsGroup />} />
-          <Route path="/admin/questions/:group" element={<Questions />} />
-          <Route path="/admin/resources" element={<Resources />} />
+          <Route path="/admin/questions/:principle" element={<Questions />} />
+          <Route path="/admin/resources" element={<ResourcesGroup />} />
+          <Route path="/admin/resources/:principle" element={<Resources />} />
           <Route path="/admin/users" element={<ManageUsers />} />
         </Route>
 
