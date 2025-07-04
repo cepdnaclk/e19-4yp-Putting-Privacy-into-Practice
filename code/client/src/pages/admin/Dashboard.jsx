@@ -4,7 +4,6 @@ import QuestionsCard from "../../components/QuestionsCard";
 import { ClipboardCheck, UserCheck, Book, Youtube } from "lucide-react";
 import useFetch from "../../hooks/useFetch";
 import useAnimatedCount from "../../hooks/useAnimatedCount";
-import { data } from "react-router-dom";
 
 export default function Dashboard() {
   const { data: users } = useFetch("/api/auth/users/count");

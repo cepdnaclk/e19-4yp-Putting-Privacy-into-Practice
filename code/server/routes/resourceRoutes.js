@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const resourceController = require('../controllers/resourceController.js');
+const { protect } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -14,8 +15,8 @@ router.post(
   upload.single('file'),
   resourceController.uploadResource
 );
-router.get('/', resourceController.listResources);
-router.delete('/:id', resourceController.deleteResource);
-router.get('/count', resourceController.getResourcesCount);
+router.get('/', protect, resourceController.listResources);
+router.delete('/:id', protect, resourceController.deleteResource);
+router.get('/count', protect, resourceController.getResourcesCount);
 
 module.exports = router;

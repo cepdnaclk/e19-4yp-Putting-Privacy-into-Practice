@@ -29,18 +29,19 @@ export default function Resources() {
             </Button>
           </div>
 
-          {showAddResourceModal && (
-            <AddResourceModal
-              onCloseForm={() => setShowAddResourceModal(false)}
-              defaultPrinciple={principle}
-            />
-          )}
           <div className="flex justify-center items-center">
             <div className="w-[900px] h-[500px] bg-gray-100">
               <VideoGallery principle={principle} />
             </div>
           </div>
         </div>
+
+        {showAddResourceModal && (
+          <AddResourceModal
+            onCloseForm={() => setShowAddResourceModal(false)}
+            defaultPrinciple={principle}
+          />
+        )}
       </div>
     </Layout>
   );

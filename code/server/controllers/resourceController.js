@@ -119,6 +119,7 @@ exports.getResourcesCount = async (req, res) => {
     const count = await Resource.countDocuments();
     res.status(200).json({ count });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    console.error('Error fetching resources count:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 };
