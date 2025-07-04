@@ -3,6 +3,7 @@ import useFetch from "../../hooks/useFetch";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useState } from "react";
 import AlertBanner from "../../components/AlertBanner";
+import ConfirmModal from "../../components/ConfirmModal";
 import axios from "axios";
 
 export default function Show({ title, principle }) {
@@ -10,17 +11,26 @@ export default function Show({ title, principle }) {
   const { data: questions, loading, error, refetch } = useFetch(url);
   const [expandedCards, setExpandedCards] = useState({});
   const [deleteError, setDeleteError] = useState(null);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const handleDelete = async (id, e) => {
-    e.stopPropagation();
+  const confirmDelete = (id) => {
+    setDeleteTarget(id);
+  };
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
     try {
-      await axios.delete(`/api/questions/${id}`);
+      await axios.delete(`/api/questions/${deleteTarget}`);
       refetch();
     } catch (err) {
       setDeleteError(
         err.response?.data?.message || "Failed to delete question"
       );
       console.error("Delete error:", err);
+    } finally {
+      setIsDeleting(false);
+      setDeleteTarget(null);
     }
   };
 
@@ -52,17 +62,11 @@ export default function Show({ title, principle }) {
         </div>
       )}
 
-      <div className="mb-8 w-full">
-        {/* <h1 className="text-3xl font-bold text-gray-900">
-          {title || "Questions"}
-        </h1> */}
-        <p className="text-[#252d5c]">
-          Review and manage your GDPR compliance questions
-        </p>
-      </div>
-
       {Array.isArray(questions) && questions.length > 0 ? (
         <div className="space-y-6 w-full">
+          <div className="mb-8 w-full">
+            <p className="text-[#252d5c]">Review and manage the questions.</p>
+          </div>
           {questions.map((question) => (
             <div
               key={question._id}
@@ -101,7 +105,7 @@ export default function Show({ title, principle }) {
                       className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition"
                       onClick={(e) => {
                         e.stopPropagation();
-                        // Handle edit
+                        // implement edit later
                       }}
                     >
                       <Pencil size={18} />
@@ -109,7 +113,10 @@ export default function Show({ title, principle }) {
                     <button
                       title="Delete"
                       className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full transition"
-                      onClick={(e) => handleDelete(question._id, e)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        confirmDelete(question._id);
+                      }}
                     >
                       <Trash2 size={18} />
                     </button>
@@ -174,28 +181,20 @@ export default function Show({ title, principle }) {
           ))}
         </div>
       ) : (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center w-full max-w-4xl mx-auto">
-          <svg
-            className="mx-auto h-12 w-12 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <h3 className="mt-2 text-lg font-medium text-gray-900">
-            No questions found
-          </h3>
-          <p className="mt-1 text-gray-500">
-            Create your first question to get started.
-          </p>
-        </div>
+        <p className="text-center text-gray-500">No questions available</p>
+      )}
+
+      {deleteTarget && (
+        <ConfirmModal
+          message={
+            isDeleting
+              ? "Deleting question, please wait..."
+              : "Are you sure you want to delete this question?"
+          }
+          onConfirm={handleDelete}
+          onCancel={() => setDeleteTarget(null)}
+          isLoading={isDeleting}
+        />
       )}
     </div>
   );
