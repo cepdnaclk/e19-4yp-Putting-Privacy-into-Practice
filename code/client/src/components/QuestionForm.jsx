@@ -69,13 +69,7 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
 
   return (
     <div className="border border-gray-300 p-4 rounded-xl">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-10">
-        <FormField
-          label="Question"
-          type="text"
-          labelSize="m"
-          onChange={setQuestion}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-20 gap-y-10">
         <FormField
           label="Type"
           type="select"
@@ -92,12 +86,10 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
           value={type}
         />
         <FormField
-          label="Complexity"
-          type="select"
-          options={["easy", "medium", "hard"]}
+          label="Question"
+          type="text"
           labelSize="m"
-          onSelect={setComplexity}
-          value={complexity}
+          onChange={setQuestion}
         />
         {type === "mcq" && (
           <>
@@ -136,6 +128,14 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
               labelSize="m"
               onSelect={setCorrectAnswer}
               value={correctAnswer}
+            />
+            <FormField
+              label="Complexity"
+              type="select"
+              options={["easy", "medium", "hard"]}
+              labelSize="m"
+              onSelect={setComplexity}
+              value={complexity}
             />
           </>
         )}

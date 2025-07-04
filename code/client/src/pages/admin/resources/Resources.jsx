@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Button from "../../../components/Button";
 import { useState } from "react";
 import AddResourceModal from "./AddResourceModal";
+import VideoGallery from "./VideoGallery";
 
 export default function Resources() {
   const location = useLocation();
@@ -34,6 +35,11 @@ export default function Resources() {
               defaultPrinciple={principle}
             />
           )}
+          <div className="flex justify-center items-center">
+            <div className="w-[900px] h-[500px] bg-gray-100">
+              <VideoGallery principle={principle} />
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

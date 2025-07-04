@@ -3,10 +3,18 @@ import Layout from "../../components/Layout";
 import useFetch from "../../hooks/useFetch";
 import Table from "../../components/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import ConfirmModal from "../../components/ConfirmModal";
 
 export default function ManageUsers() {
-  const { data: userData, loading, error } = useFetch("/api/auth/users");
+  const {
+    data: userData,
+    loading,
+    error,
+    refetch,
+  } = useFetch("/api/auth/users");
   const [users, setUsers] = useState([]);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (userData && Array.isArray(userData)) {
@@ -14,25 +22,29 @@ export default function ManageUsers() {
     }
   }, [userData]);
 
-  const handleDeleteClick = async (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this user?"
-    );
-    if (!confirmed) return;
+  const confirmDelete = (id) => {
+    setDeleteTarget(id);
+  };
 
+  const handleDeleteConfirm = async () => {
+    if (!deleteTarget) return;
+    setIsDeleting(true);
     try {
-      const res = await fetch(`/api/auth/users/${id}`, {
+      const res = await fetch(`/api/auth/users/${deleteTarget}`, {
         method: "DELETE",
       });
-
       if (!res.ok) {
         throw new Error("Failed to delete user");
       }
-
-      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+      // Refresh the list
+      setUsers((prev) => prev.filter((u) => u._id !== deleteTarget));
+      refetch?.();
     } catch (err) {
       console.error(err);
       alert("An error occurred while deleting the user.");
+    } finally {
+      setIsDeleting(false);
+      setDeleteTarget(null);
     }
   };
 
@@ -45,7 +57,7 @@ export default function ManageUsers() {
       headerName: "Delete",
       render: (row) => (
         <button
-          onClick={() => handleDeleteClick(row._id)}
+          onClick={() => confirmDelete(row._id)}
           className="text-red-600 border border-red-600 px-3 py-1 rounded hover:bg-red-50 transition"
         >
           DELETE
@@ -62,14 +74,22 @@ export default function ManageUsers() {
         </h1>
 
         {loading ? (
-          <div aria-live="polite">
-            <span className="sr-only">Loading, please wait...</span>
-            <LoadingSpinner />
+          <div className="flex justify-center py-10">
+            <LoadingSpinner size="lg" />
           </div>
         ) : error ? (
           <p className="text-red-500">Error fetching users.</p>
         ) : (
           <Table columns={columns} data={users} getRowId={(row) => row._id} />
+        )}
+
+        {deleteTarget && (
+          <ConfirmModal
+            message="Are you sure you want to delete this user?"
+            onConfirm={handleDeleteConfirm}
+            onCancel={() => setDeleteTarget(null)}
+            isLoading={isDeleting}
+          />
         )}
       </div>
     </Layout>

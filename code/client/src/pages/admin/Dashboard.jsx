@@ -1,13 +1,15 @@
 import Layout from "../../components/Layout";
 import DashboardCard from "../../components/DashboardCard";
 import QuestionsCard from "../../components/QuestionsCard";
-import { ClipboardCheck, UserCheck, Book } from "lucide-react";
+import { ClipboardCheck, UserCheck, Book, Youtube } from "lucide-react";
 import useFetch from "../../hooks/useFetch";
 import useAnimatedCount from "../../hooks/useAnimatedCount";
+import { data } from "react-router-dom";
 
 export default function Dashboard() {
   const { data: users } = useFetch("/api/auth/users/count");
   const { data: questionsCount } = useFetch("/api/questions/count");
+  const { data: resourcesCount } = useFetch("/api/resources/count");
 
   const GDPRprinciples = [
     "Lawfulness, fairness, transparency",
@@ -22,10 +24,12 @@ export default function Dashboard() {
   const totalUsers = users?.count || 0;
   const totalQuestions = questionsCount?.count || 0;
   const totalPrinciples = GDPRprinciples.length;
+  const totalResources = resourcesCount?.count || 0;
 
   const UserCount = useAnimatedCount(totalUsers);
   const QuestionCount = useAnimatedCount(totalQuestions);
   const GDPRCount = useAnimatedCount(totalPrinciples);
+  const ResourceCount = useAnimatedCount(totalResources);
 
   return (
     <Layout>
@@ -39,6 +43,11 @@ export default function Dashboard() {
             title="Active Users"
             value={UserCount}
             Icon={UserCheck}
+          />
+          <DashboardCard
+            title="Video Resources"
+            value={ResourceCount}
+            Icon={Youtube}
           />
           <QuestionsCard
             title="Questions"
