@@ -2,6 +2,7 @@ const {
   S3Client,
   PutObjectCommand,
   GetObjectCommand,
+  DeleteObjectCommand,
 } = require('@aws-sdk/client-s3');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const crypto = require('crypto');
@@ -16,7 +17,6 @@ const s3 = new S3Client({
   },
 });
 
-// UPLOAD resource
 exports.uploadResource = async (req, res) => {
   try {
     if (!req.file) {
@@ -40,7 +40,6 @@ exports.uploadResource = async (req, res) => {
 
     await s3.send(putCommand);
 
-    // save metadata to Mongo
     const resource = new Resource({
       title,
       s3Key: key,
@@ -65,9 +64,8 @@ exports.uploadResource = async (req, res) => {
 
 exports.listResources = async (req, res) => {
   try {
-    const { principle } = req.query; // get principle from query string
+    const { principle } = req.query;
 
-    // Build the filter object
     const filter = principle ? { principle } : {};
 
     const resources = await Resource.find(filter).sort({ uploadedAt: -1 });
@@ -103,7 +101,7 @@ exports.deleteResource = async (req, res) => {
     if (!resource) {
       return res.status(404).json({ message: 'Resource not found' });
     }
-    const deleteCommand = new PutObjectCommand({
+    const deleteCommand = new DeleteObjectCommand({
       Bucket: process.env.S3_BUCKET_NAME,
       Key: resource.s3Key,
     });
