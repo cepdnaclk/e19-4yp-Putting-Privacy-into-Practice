@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import useFetch from "../../hooks/useFetch";
 import Table from "../../components/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ConfirmModal from "../../components/ConfirmModal";
+import { Link } from "react-router-dom";
 
 export default function ManageUsers() {
   const {
@@ -36,7 +37,6 @@ export default function ManageUsers() {
       if (!res.ok) {
         throw new Error("Failed to delete user");
       }
-      // Refresh the list
       setUsers((prev) => prev.filter((u) => u._id !== deleteTarget));
       refetch?.();
     } catch (err) {
@@ -58,10 +58,23 @@ export default function ManageUsers() {
       render: (row) => (
         <button
           onClick={() => confirmDelete(row._id)}
-          className="text-red-600 border border-red-600 px-3 py-1 rounded hover:bg-red-50 transition"
+          className="text-red-600 border border-red-600 px-3 py-1 min-w-[80px] rounded hover:bg-red-50 transition"
         >
           DELETE
         </button>
+      ),
+    },
+    {
+      field: "Performance",
+      headerName: "Performance",
+      render: (row) => (
+        <Link
+          to={`/admin/users/${row._id}`}
+          state={{ username: row.username }}
+          className="text-[#252d5c] border border-[#252d5c] px-3 py-1 rounded hover:bg-blue-50 transition min-w-[80px] text-center inline-block"
+        >
+          VIEW
+        </Link>
       ),
     },
   ];

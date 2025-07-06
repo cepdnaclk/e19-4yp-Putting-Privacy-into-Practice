@@ -7,6 +7,7 @@ import QuestionsGroup from "./pages/admin/QuestionsGroup";
 import Questions from "./pages/admin/Questions";
 import ManageUsers from "./pages/admin/ManageUsers";
 import Resources from "./pages/admin/resources/Resources";
+import UserDetails from "./pages/admin/UserDetails";
 import "./App.css";
 import "@fontsource/inter";
 import AuthRedirect from "./components/AuthRedirect";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/admin/resources" element={<ResourcesGroup />} />
           <Route path="/admin/resources/:principle" element={<Resources />} />
           <Route path="/admin/users" element={<ManageUsers />} />
+          <Route path="/admin/users/:id" element={<UserDetails />} />
         </Route>
 
         {/* Private routes for user. */}

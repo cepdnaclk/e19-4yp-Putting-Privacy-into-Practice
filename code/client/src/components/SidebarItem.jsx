@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 export default function SidebarItem({ icon: Icon, label, to }) {
-  const isQuestions = label === "Questions";
-
   return (
     <NavLink
       to={to}
@@ -11,7 +9,6 @@ export default function SidebarItem({ icon: Icon, label, to }) {
           isActive ? "bg-blue-900 text-white" : "text-white hover:bg-blue-900"
         }`
       }
-      {...(!isQuestions && { end: true })}
     >
       <Icon size={16} />
       <span>{label}</span>
