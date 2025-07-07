@@ -10,6 +10,8 @@ import "./App.css";
 import "@fontsource/inter";
 import AuthRedirect from "./components/AuthRedirect";
 import LevelBoard from "./pages/user/LevelBoard";
+import LevelInfo from "./pages/user/LevelInfo";
+import QuestionDisplay from "./pages/user/ChallengeDisplay";
 
 function App() {
   return (
@@ -30,7 +32,12 @@ function App() {
 
         {/* Private routes for users. */}
         <Route element={<AuthRedirect requiredRole="user" />}>
-          <Route path="/user/levelBoard" element={<LevelBoard />} />
+          <Route path="/levelBoard" element={<LevelBoard />} />
+          <Route path="/levelBoard/:levelId/info" element={<LevelInfo />} />
+          <Route
+            path="/levelBoard/:levelId/challenge"
+            element={<QuestionDisplay />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

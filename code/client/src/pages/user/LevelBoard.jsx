@@ -3,6 +3,8 @@ import { useState } from "react";
 import gameLevels from "../../constants/levels";
 import LevelCard from "../../components/LevelCard";
 import ConfirmationModal from "../../components/ConfirmationModal";
+import { useNavigate } from "react-router-dom";
+import GameLayout from "../../components/GameLayout";
 
 export default function LevelBoard() {
   const [stars, setStars] = useState(0);
@@ -12,15 +14,25 @@ export default function LevelBoard() {
   const [showResetModal, setShowResetModal] = useState(false);
   const totalLevel = 7;
 
+  const navigate = useNavigate();
+
   function handleReset() {
+    // Function has to be implemented with back-end request so that related data is set in the db.
+    // For now it sets in the page level.
     setStars(0);
     setCompletedLevels(0);
     setCurrentLevel(1);
     setShowResetModal(false);
   }
 
+  function onSelectLevel(level) {
+    const { id, ...rest } = level;
+    console.log(id);
+    navigate(`/levelBoard/${id}/info`);
+  }
+
   return (
-    <div className="w-screen min-h-screen bg-gradient-to-br from-slate-900 via-[#22284e] to-slate-900 py-7 text-center">
+    <GameLayout>
       {/* Header */}
       <div className="flex items-center justify-center gap-4 mb-4">
         <Trophy size={50} color="#facc14" />
@@ -53,13 +65,14 @@ export default function LevelBoard() {
       </div>
 
       {/* levels */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 px-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8 py-2 px-4 sm:px-6 md:px-8 max-w-full overflow-x-hidden">
         {gameLevels.map((level) => {
           return (
             <LevelCard
               levelProps={level}
               currentLevel={currentLevel}
               key={level.id}
+              handleClick={onSelectLevel}
             />
           );
         })}
@@ -87,6 +100,6 @@ export default function LevelBoard() {
           handleConfirmation={handleReset}
         />
       )}
-    </div>
+    </GameLayout>
   );
 }

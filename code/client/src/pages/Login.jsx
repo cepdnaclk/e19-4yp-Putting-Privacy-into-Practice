@@ -42,7 +42,7 @@ export default function Login() {
         if (response.status === 200) {
           localStorage.setItem("token", response.data.token);
           if (response.data.user.role === "admin") navigate("/admin/dashboard");
-          else navigate("/user/levelBoard");
+          else navigate("/levelBoard");
         }
       })
       .catch((error) => {

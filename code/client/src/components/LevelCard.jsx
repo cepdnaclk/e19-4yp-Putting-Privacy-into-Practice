@@ -1,14 +1,21 @@
 import { CheckCircle, Lock, Play } from "lucide-react";
 
-export default function LevelCard({ levelProps, currentLevel }) {
+export default function LevelCard({ levelProps, currentLevel, handleClick }) {
   const current = currentLevel === levelProps.id;
   const isUnlocked = levelProps.id <= currentLevel;
+
+  function clickHandler() {
+    // This function should be improvded.. Have an eye on it.
+    if (isUnlocked) handleClick(levelProps);
+    else return;
+  }
 
   return (
     <div
       className={`px-3 rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-lg ${
         isUnlocked ? "cursor-pointer" : "opacity-65"
       }`}
+      onClick={() => clickHandler()}
     >
       <div className={`bg-gradient-to-br ${levelProps.color} rounded-t-xl p-4`}>
         <div className="flex justify-between items-center mb-2">
