@@ -11,6 +11,9 @@ import UserDetails from "./pages/admin/UserDetails";
 import "./App.css";
 import "@fontsource/inter";
 import AuthRedirect from "./components/AuthRedirect";
+import LevelBoard from "./pages/user/LevelBoard";
+import LevelInfo from "./pages/user/LevelInfo";
+import QuestionDisplay from "./pages/user/ChallengeDisplay";
 import ResourcesGroup from "./pages/admin/resources/ResourcesGroup";
 function App() {
   return (
@@ -32,9 +35,14 @@ function App() {
           <Route path="/admin/users/:id" element={<UserDetails />} />
         </Route>
 
-        {/* Private routes for user. */}
+        {/* Private routes for users. */}
         <Route element={<AuthRedirect requiredRole="user" />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/levelBoard" element={<LevelBoard />} />
+          <Route path="/levelBoard/:principle/info" element={<LevelInfo />} />
+          <Route
+            path="/levelBoard/:principle/challenge"
+            element={<QuestionDisplay />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
