@@ -15,6 +15,7 @@
   "type": "commonjs",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.842.0",
+    "@aws-sdk/s3-request-presigner": "^3.842.0",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "colors": "^1.4.0",
