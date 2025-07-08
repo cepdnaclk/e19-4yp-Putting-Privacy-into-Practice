@@ -33,9 +33,9 @@ function App() {
         {/* Private routes for users. */}
         <Route element={<AuthRedirect requiredRole="user" />}>
           <Route path="/levelBoard" element={<LevelBoard />} />
-          <Route path="/levelBoard/:levelId/info" element={<LevelInfo />} />
+          <Route path="/levelBoard/:principle/info" element={<LevelInfo />} />
           <Route
-            path="/levelBoard/:levelId/challenge"
+            path="/levelBoard/:principle/challenge"
             element={<QuestionDisplay />}
           />
         </Route>

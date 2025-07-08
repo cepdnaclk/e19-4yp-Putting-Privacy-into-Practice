@@ -5,7 +5,7 @@ export default function LevelCard({ levelProps, currentLevel, handleClick }) {
   const isUnlocked = levelProps.id <= currentLevel;
 
   function clickHandler() {
-    // This function should be improvded.. Have an eye on it.
+    // This function should be improved.. Have an eye on it.
     if (isUnlocked) handleClick(levelProps);
     else return;
   }

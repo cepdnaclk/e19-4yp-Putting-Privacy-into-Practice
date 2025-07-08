@@ -5,6 +5,7 @@ import LevelCard from "../../components/LevelCard";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import { useNavigate } from "react-router-dom";
 import GameLayout from "../../components/GameLayout";
+import slugify from "../../utils/slugify";
 
 export default function LevelBoard() {
   const [stars, setStars] = useState(0);
@@ -26,9 +27,11 @@ export default function LevelBoard() {
   }
 
   function onSelectLevel(level) {
-    const { id, ...rest } = level;
+    const { id, principle, ...rest } = level;
     console.log(id);
-    navigate(`/levelBoard/${id}/info`);
+    navigate(`/levelBoard/${slugify(principle)}/info`, {
+      state: { levelId: id },
+    });
   }
 
   return (

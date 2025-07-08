@@ -1,16 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import gameLevels from "../../constants/levels";
 import GameLayout from "../../components/GameLayout";
 import { Clock, Target } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import slugify from "../../utils/slugify";
 
 export default function LevelInfo() {
-  const { levelId } = useParams();
-  const level = gameLevels.find((level) => level.id == levelId);
+  const { principle } = useParams();
+  const location = useLocation();
+  const { levelId } = location.state;
+  const level = gameLevels.find((level) => level.id === Number(levelId));
   const navigate = useNavigate();
 
   function handleStartChallenge() {
-    navigate(`/levelBoard/${levelId}/challenge`);
+    navigate(`/levelBoard/${slugify(principle)}/challenge`, {
+      state: { levelId },
+    });
   }
 
   return (
@@ -36,7 +40,7 @@ export default function LevelInfo() {
           >
             <Target size={30} color="white" />
             <span className="text-white font-bold">2</span>
-            <p className="text-white">Challanges</p>
+            <p className="text-white">Challenges</p>
           </div>
           {/* Time per question */}
           <div
