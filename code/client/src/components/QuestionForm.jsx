@@ -4,7 +4,8 @@ import Button from "./Button";
 import axios from "axios";
 
 export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
-  const [question, setQuestion] = useState("");
+  const [scenario, setScenario] = useState("");
+  const [challenge, setChallenge] = useState("");
   const [type, setType] = useState("mcq");
   const [complexity, setComplexity] = useState("easy");
   const [mcqOptions, setMcqOptions] = useState({
@@ -15,9 +16,18 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
   });
   const [error, setError] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("A");
+  const [reflection, setReflection] = useState("");
 
   async function handleSave() {
-    if (!question.trim()) {
+    if (!scenario.trim()) {
+      setError("Please enter the question.");
+      return;
+    }
+    if (!challenge.trim()) {
+      setError("Please enter the question.");
+      return;
+    }
+    if (!reflection.trim()) {
       setError("Please enter the question.");
       return;
     }
@@ -45,12 +55,14 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
       }
     }
     const payload = {
-      question,
+      scenario,
+      challenge,
       type,
       complexity,
       options: type === "mcq" ? mcqOptions : {},
       correctAnswer,
       principle: defaultPrinciple,
+      reflection,
     };
 
     try {
@@ -86,10 +98,16 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
           value={type}
         />
         <FormField
-          label="Question"
+          label="Scenario"
           type="text"
           labelSize="m"
-          onChange={setQuestion}
+          onChange={setScenario}
+        />
+        <FormField
+          label="Challenge"
+          type="text"
+          labelSize="m"
+          onChange={setChallenge}
         />
         {type === "mcq" && (
           <>
@@ -139,6 +157,12 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
             />
           </>
         )}
+        <FormField
+          label="Reflection"
+          type="text"
+          labelSize="m"
+          onChange={setReflection}
+        />
       </div>
       {type === "essay" && (
         <FormField
@@ -150,6 +174,7 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
           value={correctAnswer}
         />
       )}
+
       {error && <div className="text-red-500 mt-2">{error}</div>}
       <div className="flex space-x-4 mt-4">
         <Button onClick={handleSave}>Save</Button>

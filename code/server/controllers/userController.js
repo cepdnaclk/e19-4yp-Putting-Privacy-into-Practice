@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const { generateToken } = require('../utils/jwt');
+const Progress = require('../models/Progress');
 
 // Register a new user
 exports.register = async (req, res) => {
@@ -29,6 +30,13 @@ exports.register = async (req, res) => {
     });
 
     await user.save();
+
+    // Create a new Progress for the new user.
+    const progress = new Progress({
+      userId: user._id,
+    });
+
+    await progress.save();
 
     res.status(201).json({
       message: 'User registered successfully',

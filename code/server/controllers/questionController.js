@@ -10,17 +10,27 @@ exports.getQuestionsCount = async (req, res) => {
 };
 
 exports.createQuestion = async (req, res) => {
-  const { question, type, complexity, options, correctAnswer, principle } =
-    req.body;
+  const {
+    scenario,
+    challenge,
+    type,
+    complexity,
+    options,
+    correctAnswer,
+    principle,
+    reflection,
+  } = req.body;
 
   try {
     const newQuestion = new Question({
-      question,
+      scenario,
+      challenge,
       type,
       complexity,
       options,
       correctAnswer,
       principle,
+      reflection,
     });
 
     await newQuestion.save();
