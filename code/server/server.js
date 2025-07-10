@@ -2,6 +2,7 @@ const express = require('express');
 const userRoutes = require('./routes/userRoutes');
 const questionRoutes = require('./routes/questionRoutes');
 const resourceRoutes = require('./routes/resourceRoutes');
+const feedbackRoutes = require('./routes/feedbackRoutes');
 const database = require('./config/database');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -35,6 +36,7 @@ app.use(
 app.use('/api/auth', userRoutes);
 app.use('/api', questionRoutes);
 app.use('/api/resources', resourceRoutes);
+app.use('/api', feedbackRoutes);
 
 // default route
 app.get('/', (req, res) => {
