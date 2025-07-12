@@ -1,7 +1,6 @@
 import { Home, Settings, Book, BookOpenCheck, Users } from "lucide-react";
 import SidebarItem from "./SidebarItem";
 import Button from "./Button";
-import { config } from "../utils/config";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
@@ -18,7 +17,7 @@ export default function Sidebar() {
   function handleLogout() {
     axios
       .post(
-        `${config.serverBaseUrl}/api/auth/logout`,
+        "/api/auth/logout",
         {},
         {
           withCredentials: true,

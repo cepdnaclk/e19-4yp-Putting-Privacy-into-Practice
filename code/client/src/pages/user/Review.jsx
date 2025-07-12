@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { config } from "../../utils/config";
 import GameLayout from "../../components/GameLayout";
 import gameLevels from "../../constants/levels";
 import { useParams } from "react-router-dom";
@@ -21,7 +20,7 @@ export default function Review() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${config.serverBaseUrl}/api/progress`, {
+      .get(`/api/progress`, {
         withCredentials: true,
       })
       .then((res) => {

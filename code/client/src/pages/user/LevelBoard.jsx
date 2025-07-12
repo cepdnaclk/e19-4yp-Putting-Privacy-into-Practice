@@ -6,7 +6,6 @@ import ConfirmationModal from "../../components/ConfirmationModal";
 import { useNavigate } from "react-router-dom";
 import GameLayout from "../../components/GameLayout";
 import axios from "axios";
-import { config } from "../../utils/config";
 import { AuthContext } from "../../context/AuthContext";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
@@ -27,7 +26,7 @@ export default function LevelBoard() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${config.serverBaseUrl}/api/progress`, {
+      .get(`/api/progress`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -57,11 +56,7 @@ export default function LevelBoard() {
     setShowResetModal(false);
 
     axios
-      .post(
-        `${config.serverBaseUrl}/api/progress/reset`,
-        {},
-        { withCredentials: true }
-      )
+      .post(`/api/progress/reset`, {}, { withCredentials: true })
       .then((res) => {
         console.log(res.data.message);
         window.location.reload();
@@ -82,7 +77,7 @@ export default function LevelBoard() {
   async function handleLogout() {
     try {
       const response = await axios.post(
-        `${config.serverBaseUrl}/api/auth/logout`,
+        `/api/auth/logout`,
         {},
         { withCredentials: true }
       );

@@ -5,7 +5,6 @@ import { Clock, Star } from "lucide-react";
 import EssayQuestion from "../../components/EssayQuestion";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { config } from "../../utils/config";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import gameLevels from "../../constants/levels";
@@ -32,7 +31,7 @@ export default function QuestionDisplay() {
   useEffect(() => {
     const checkLevelCompletion = async () => {
       try {
-        const res = await axios.get(`${config.serverBaseUrl}/api/progress`, {
+        const res = await axios.get(`/api/progress`, {
           withCredentials: true,
         });
 
@@ -58,7 +57,7 @@ export default function QuestionDisplay() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${config.serverBaseUrl}/api/questions/${levelValue}`, {
+      .get(`/api/questions/${levelValue}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -128,7 +127,7 @@ export default function QuestionDisplay() {
 
     axios
       .post(
-        `${config.serverBaseUrl}/api/progress/update`,
+        `/api/progress/update`,
         {
           stars: starCount,
           questions: facedQuestions,

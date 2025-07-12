@@ -5,7 +5,6 @@ import FormField from "../components/FormField";
 import AlertBanner from "../components/AlertBanner";
 import { useRef, useState } from "react";
 import axios from "axios";
-import { config } from "../utils/config";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -33,7 +32,7 @@ export default function Login() {
 
     axios
       .post(
-        `${config.serverBaseUrl}/api/auth/login`,
+        `/api/auth/login`,
         {
           email: email,
           password: password,
