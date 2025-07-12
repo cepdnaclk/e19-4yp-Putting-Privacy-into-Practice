@@ -3,6 +3,8 @@ import { X } from "lucide-react";
 export default function ConfirmationModal({
   setShowModal,
   handleConfirmation,
+  mainPrompt,
+  subPrompt,
 }) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -14,10 +16,8 @@ export default function ConfirmationModal({
           <X size={24} />
         </button>
 
-        <h2 className="text-lg font-semibold mb-4">Are you sure?</h2>
-        <p className="text-sm mb-6">
-          This will reset your progress permanently.
-        </p>
+        <h2 className="text-lg font-semibold mb-4">{mainPrompt}</h2>
+        <p className="text-sm mb-6">{subPrompt} </p>
         <div className="flex justify-center gap-4">
           <button
             onClick={() => setShowModal(false)}

@@ -78,8 +78,11 @@ export default function Show({ title, principle }) {
               >
                 <div className="flex justify-between items-start w-full">
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {question.question}
+                    <h3 className="text-lg text-gray-800 mb-3">
+                      {question.scenario}
+                    </h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                      {question.challenge}
                     </h3>
                     <div className="flex flex-wrap gap-2 mt-3">
                       {question.type && (
@@ -175,6 +178,17 @@ export default function Show({ title, principle }) {
                       </div>
                     </div>
                   )}
+
+                  <div className="mt-6">
+                    <h4 className="text-sm font-medium text-gray-500 mb-2">
+                      REFLECTION
+                    </h4>
+                    <div className="bg-green-50 border border-green-100 rounded-lg p-4">
+                      <p className="text-green-800 font-medium">
+                        {question.reflection}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

@@ -24,8 +24,8 @@ const PRINCIPLES = [
     icon: FileLock,
   },
   {
-    value: "data_minimization",
-    label: "Data Minimization",
+    value: "data_minimisation",
+    label: "Data Minimisation",
     description:
       "Personal data must be adequate, relevant and limited to what is necessary.",
     icon: ArrowDownNarrowWide,
