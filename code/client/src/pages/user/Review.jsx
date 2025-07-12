@@ -26,7 +26,12 @@ export default function Review() {
       })
       .then((res) => {
         const progress = res.data.progress;
-        setFacedQuestions(progress.questions);
+        // Fetch the questions only related to this level. levelValue(e.g; data_minimisation, accuracy...)
+        const facedQuestionsOfThisLevel = progress.questions.filter(
+          (item) => item.question.principle === levelValue
+        );
+        console.log(facedQuestionsOfThisLevel);
+        setFacedQuestions(facedQuestionsOfThisLevel);
         setStars(progress.levelStars[levelId - 1]);
       })
       .catch((err) => {

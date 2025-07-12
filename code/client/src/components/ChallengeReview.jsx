@@ -55,12 +55,12 @@ export default function ChallengeReview({ item, index }) {
       {/* break line  */}
       <hr className="my-4 border-gray-300 mb-5" />
       {/* correct answer  */}
-      <div className="flex flex-col bg-amber-100 border border-amber-300 rounded-lg p-2 mb-3 gap-1">
+      <div className="flex flex-col bg-green-200 border border-green-500 rounded-lg p-2 mb-3 gap-1">
         <div className="flex justify-start items-center gap-2">
-          <CheckCircle size={16} className="text-amber-800" />
-          <p className="text-amber-800 font-bold">Correct Answer: </p>
+          <CheckCircle size={16} className="text-green-800" />
+          <p className="text-green-800 font-bold">Correct Answer: </p>
         </div>
-        <p className="text-amber-600 text-sm font-semibold">
+        <p className="text-green-600 text-sm font-semibold">
           {correctOption}: {options[correctOption]}
         </p>
       </div>
