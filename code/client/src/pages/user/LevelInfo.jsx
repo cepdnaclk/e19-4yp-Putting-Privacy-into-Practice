@@ -16,6 +16,12 @@ export default function LevelInfo() {
     navigate(`/levelBoard/${levelValue}/challenge`);
   }
 
+  function handleBack() {
+    navigate(`/levelBoard/${levelValue}/watchVideo`, {
+      state: { levelId, levelStars },
+    });
+  }
+
   // Revisit the completed quiz.
   function displayPreviousAnswers() {
     navigate(`/levelBoard/${levelValue}/review`);
@@ -70,12 +76,21 @@ export default function LevelInfo() {
           </div>
         </div>
 
-        <button
-          className="bg-white rounded-lg py-2 px-6 font-bold hover:bg-gray-300 mb-1"
-          onClick={completed ? displayPreviousAnswers : handleStartChallenge}
-        >
-          {completed ? "Review Challenge" : "Start Challenge"}
-        </button>
+        <div className="flex items-center justify-center gap-5 w-full">
+          <button
+            className="bg-white rounded-lg py-2 px-6 font-bold hover:bg-gray-300 mb-1"
+            onClick={handleBack}
+          >
+            Back to Video
+          </button>
+
+          <button
+            className="bg-white rounded-lg py-2 px-6 font-bold hover:bg-gray-300 mb-1"
+            onClick={completed ? displayPreviousAnswers : handleStartChallenge}
+          >
+            {completed ? "Review Challenge" : "Start Challenge"}
+          </button>
+        </div>
       </div>
     </GameLayout>
   );
