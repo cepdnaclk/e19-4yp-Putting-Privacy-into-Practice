@@ -4,7 +4,6 @@ import Button from "../components/Button";
 import FormField from "../components/FormField";
 import { useEffect, useRef, useState } from "react";
 import AlertBanner from "../components/AlertBanner";
-import { config } from "../utils/config";
 import axios from "axios";
 
 export default function Signup() {
@@ -45,7 +44,7 @@ export default function Signup() {
     }
 
     axios
-      .post(`${config.serverBaseUrl}/api/auth/register`, {
+      .post(`/api/auth/register`, {
         username: username,
         email: email,
         password: password,
