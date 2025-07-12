@@ -1,7 +1,7 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import gameLevels from "../../constants/levels";
 import GameLayout from "../../components/GameLayout";
-import VideoGallery from "./videoGallery";
+import VideoGallery from "./VideoGallery";
 
 export default function LevelVideo() {
   const { levelValue } = useParams();

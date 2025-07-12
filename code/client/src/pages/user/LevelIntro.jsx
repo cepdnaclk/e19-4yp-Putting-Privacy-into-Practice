@@ -33,7 +33,7 @@ export default function LevelIntro() {
           </p>
         </div>
 
-        <p className="text-white text-lg font-semibold mb-3 margin-center">
+        <p className="text-white text-lg font-semibold mb-3">
           Before starting the challenges, watch the video to understand the
           principle better. This will help you in the challenges ahead. Watching
           the video is essential to grasp the concept fully and perform better
