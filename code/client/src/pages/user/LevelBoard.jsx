@@ -74,7 +74,7 @@ export default function LevelBoard() {
   function onSelectLevel(level) {
     const { id, levelValue, ...rest } = level;
     const levelStars = progress.levelStars[id - 1];
-    navigate(`/levelBoard/${levelValue}/info`, {
+    navigate(`/levelBoard/${levelValue}/levelIntro`, {
       state: { levelId: id, levelStars },
     });
   }
