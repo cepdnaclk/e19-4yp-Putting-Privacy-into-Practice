@@ -20,7 +20,7 @@ export default function QuestionDisplay() {
   const [starCount, setStarCount] = useState(0);
   const [showExplanation, setShowExplanation] = useState(false);
   const [levelEnd, setLevelEnd] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(20);
+  const [timeLeft, setTimeLeft] = useState(30);
   const [loading, setLoading] = useState(false);
   const [showQuizRetakeModal, setShowQuizRetakeModal] = useState(false);
   const [facedQuestions, setFacedQuestions] = useState([]);
@@ -114,9 +114,7 @@ export default function QuestionDisplay() {
     setUserAnswer(null);
     setShowExplanation(false);
     setCurrentQuestion(questions[++questionIndex.current]);
-    setTimeLeft((prev) =>
-      questions[questionIndex.current].type === "essay" ? prev + 30 : prev + 20
-    );
+    setTimeLeft((prev) => prev + 30);
   }
 
   // level complete action
