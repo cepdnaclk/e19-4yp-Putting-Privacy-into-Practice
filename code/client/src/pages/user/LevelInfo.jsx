@@ -71,7 +71,7 @@ export default function LevelInfo() {
             className={`flex flex-1 flex-col items-center justify-center ${level.overlay} bg-opacity-30 rounded-xl p-3 gap-1`}
           >
             <Clock size={30} color="white" />
-            <span className="text-white font-bold">20s</span>
+            <span className="text-white font-bold">30s</span>
             <p className="text-white">Per Question</p>
           </div>
         </div>
