@@ -105,88 +105,104 @@ export default function LevelBoard() {
   }
 
   return (
-    <GameLayout>
-      {/* Header */}
-      <div className="flex items-center justify-center gap-4 mb-4">
-        <Trophy size={50} color="#facc14" />
-        <h1 className="text-5xl font-bold text-white">GDPR Guard</h1>
-        <Trophy size={50} color="#facc14" />
-      </div>
-      <p className="text-xl text-gray-300 mb-4">
-        Master the 7 principles of Data Protection
-      </p>
-
-      {/* player Stats */}
-      <div className="flex items-center justify-center gap-5 mb-8">
-        {/* stars */}
-        <div className="flex items-center justify-center bg-[#2e3456] p-1 px-3 rounded-lg">
-          <Star size={20} color="#facc14" />
-          <p className="text-white text-sm font-semibold ml-2">{stars} Stars</p>
+    <>
+      {/* levels completion congratulations Flare */}
+      {completedLevels === 7 && (
+        <div className="w-full bg-yellow-400 text-center animate-pulse">
+          <div className="p-2">
+            <p className="text-xl">
+              🎉 <span className="font-bold">Congratulations!</span> 🎉
+            </p>
+            <p className="text-sm">You've mastered all GDPR Principles!</p>
+          </div>
         </div>
-        {/* completed levels */}
-        <div className="flex items-center justify-center bg-[#2e3456] p-1 px-3 rounded-lg">
-          <Shield size={20} color="#0ef506" />
-          <p className="text-white text-sm font-semibold ml-2">
-            {completedLevels}/{totalLevel} Completed
-          </p>
-        </div>
-        {/* player name */}
-        <div className="flex items-center justify-center bg-[#2e3456] p-1 px-3 rounded-lg">
-          <User size={20} color="#040653" />
-          <p className="text-white text-sm font-semibold ml-2">
-            {player.current}
-          </p>
-        </div>
-      </div>
-
-      {/* levels */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8 py-2 px-4 sm:px-6 md:px-8 max-w-full overflow-x-hidden">
-        {gameLevels.map((level) => {
-          return (
-            <LevelCard
-              levelProps={level}
-              currentLevel={currentLevel}
-              key={level.id}
-              handleClick={onSelectLevel}
-            />
-          );
-        })}
-      </div>
-
-      <div className="flex justify-center items-center gap-4">
-        {/* Reset  */}
-        <div
-          className="inline-flex items-center justify-center gap-2 bg-[#2e3456] py-1 px-3 rounded-md
-                  transition duration-300 hover:text-black group cursor-pointer"
-          onClick={() => setShowResetModal(true)}
-        >
-          <RotateCcw
-            size={20}
-            className="text-white group-hover:text-black transition duration-300"
-          />
-          <span className="text-white text-sm group-hover:text-black group-hover:font-bold transition duration-300">
-            Reset Progress
-          </span>
-        </div>
-
-        {/* logout button */}
-        <button
-          className="bg-red-600 text-sm font-semibold text-white rounded-lg px-5 py-1 cursor-pointer hover:bg-red-800"
-          onClick={handleLogout}
-        >
-          <span>Logout</span>
-        </button>
-      </div>
-
-      {/* Reset confirmation modal */}
-      {showResetModal && (
-        <ConfirmationModal
-          setShowModal={setShowResetModal}
-          handleConfirmation={handleReset}
-          mainPrompt="Are you sure?"
-          subPrompt="This will reset your progress permanently."
-        />
       )}
-    </GameLayout>
+
+      <GameLayout>
+        {/* Header */}
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <Trophy size={50} color="#facc14" />
+          <h1 className="text-5xl font-bold text-white">GDPR Guard</h1>
+          <Trophy size={50} color="#facc14" />
+        </div>
+        <p className="text-xl text-gray-300 mb-4">
+          Master the 7 principles of Data Protection
+        </p>
+
+        {/* player Stats */}
+        <div className="flex items-center justify-center gap-5 mb-8">
+          {/* stars */}
+          <div className="flex items-center justify-center bg-[#2e3456] p-1 px-3 rounded-lg">
+            <Star size={20} color="#facc14" />
+            <p className="text-white text-sm font-semibold ml-2">
+              {stars} Stars
+            </p>
+          </div>
+          {/* completed levels */}
+          <div className="flex items-center justify-center bg-[#2e3456] p-1 px-3 rounded-lg">
+            <Shield size={20} color="#0ef506" />
+            <p className="text-white text-sm font-semibold ml-2">
+              {completedLevels}/{totalLevel} Completed
+            </p>
+          </div>
+          {/* player name */}
+          <div className="flex items-center justify-center bg-[#2e3456] p-1 px-3 rounded-lg">
+            <User size={20} color="#040653" />
+            <p className="text-white text-sm font-semibold ml-2">
+              {player.current}
+            </p>
+          </div>
+        </div>
+
+        {/* levels */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8 py-2 px-4 sm:px-6 md:px-8 max-w-full overflow-x-hidden">
+          {gameLevels.map((level) => {
+            return (
+              <LevelCard
+                levelProps={level}
+                currentLevel={currentLevel}
+                key={level.id}
+                handleClick={onSelectLevel}
+              />
+            );
+          })}
+        </div>
+
+        <div className="flex justify-center items-center gap-4">
+          {/* Reset  */}
+          <div
+            className="inline-flex items-center justify-center gap-2 bg-[#2e3456] py-1 px-3 rounded-md
+                  transition duration-300 hover:text-black group cursor-pointer"
+            onClick={() => setShowResetModal(true)}
+          >
+            <RotateCcw
+              size={20}
+              className="text-white group-hover:text-black transition duration-300"
+            />
+            <span className="text-white text-sm group-hover:text-black group-hover:font-bold transition duration-300">
+              Reset Progress
+            </span>
+          </div>
+
+          {/* logout button */}
+          <button
+            className="bg-red-600 text-sm font-semibold text-white rounded-lg px-5 py-1 cursor-pointer hover:bg-red-800"
+            onClick={handleLogout}
+          >
+            <span>Logout</span>
+          </button>
+        </div>
+
+        {/* Reset confirmation modal */}
+        {showResetModal && (
+          <ConfirmationModal
+            setShowModal={setShowResetModal}
+            handleConfirmation={handleReset}
+            mainPrompt="Are you sure?"
+            subPrompt="This will reset your progress permanently."
+          />
+        )}
+      </GameLayout>
+    </>
   );
 }
