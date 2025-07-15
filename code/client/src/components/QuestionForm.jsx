@@ -20,15 +20,15 @@ export default function QuestionForm({ onCloseForm, defaultPrinciple }) {
 
   async function handleSave() {
     if (!scenario.trim()) {
-      setError("Please enter the question.");
+      setError("Please enter the scenario.");
       return;
     }
     if (!challenge.trim()) {
-      setError("Please enter the question.");
+      setError("Please enter the challenge.");
       return;
     }
     if (!reflection.trim()) {
-      setError("Please enter the question.");
+      setError("Please enter the reflection.");
       return;
     }
     if (!complexity) {
