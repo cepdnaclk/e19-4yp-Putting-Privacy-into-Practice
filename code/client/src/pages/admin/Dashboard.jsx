@@ -21,12 +21,7 @@ export default function Dashboard() {
   ];
 
   const totalUsers = users?.count || 0;
-  const totalQuestions = questionsCount?.total || 0;
-  const {
-    easy: easyquestions = 0,
-    medium: mediumquestions = 0,
-    hard: hardquestions = 0,
-  } = questionsCount || {};
+  const totalQuestions = questionsCount?.count || 0;
   const totalPrinciples = GDPRprinciples.length;
   const totalResources = resourcesCount?.count || 0;
 
@@ -57,11 +52,7 @@ export default function Dashboard() {
             title="Questions"
             value={QuestionCount}
             Icon={ClipboardCheck}
-            breakdown={{
-              easy: easyquestions,
-              medium: mediumquestions,
-              hard: hardquestions,
-            }}
+            breakdown={{ easy: 5, medium: 4, hard: 3 }}
           />
           <DashboardCard title="GDPR Principles" value={GDPRCount} Icon={Book}>
             {(isHovered) => (
