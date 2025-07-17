@@ -34,6 +34,11 @@ const questionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  FeedBackonWrongOptions: {
+    type: Map,
+    of: String,
+    default: {},
+  },
 });
 
 const Question = mongoose.model('Question', questionSchema);

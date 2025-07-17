@@ -122,7 +122,7 @@ export default function LevelBoard() {
         {/* Header */}
         <div className="flex items-center justify-center gap-4 mb-4">
           <Trophy size={50} color="#facc14" />
-          <h1 className="text-5xl font-bold text-white">GDPR Guard</h1>
+          <h1 className="text-5xl font-bold text-white">GDPR Defender</h1>
           <Trophy size={50} color="#facc14" />
         </div>
         <p className="text-xl text-gray-300 mb-4">
