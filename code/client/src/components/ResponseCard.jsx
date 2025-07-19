@@ -1,9 +1,10 @@
-import { CheckCircle, CircleXIcon, Star } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 export default function ResponseCard({
   answerStatus,
   correctAnswer,
   reflection,
+  isTimeOut,
 }) {
   return (
     <div className="w-full flex flex-col gap-4">
@@ -24,22 +25,32 @@ export default function ResponseCard({
               <p className="font-bold text-green-800">Correct!</p>
             </>
           )}
-          {/* incorrect answer header  */}
-          {!answerStatus && (
+          {/* incorrect answer without Timeout header  */}
+          {!answerStatus && !isTimeOut && (
             <>
-              <CircleXIcon size={18} color="red" />
-              <span>❌</span>
-              <p className="font-bold text-red-800">Incorrect</p>
+              <span className="text-lg">🤖</span>
+              <p className="font-bold text-red-800">Incorrect choice: </p>
+            </>
+          )}
+          {/* incorrect answer with timeout */}
+          {!answerStatus && isTimeOut && (
+            <>
+              <span className="text-lg">⌚</span>
+              <p className="font-bold text-red-800">Timeout</p>
             </>
           )}
         </div>
-        {/* correct answer  */}
+        {/* correct answer if user's answer is correct. */}
         {answerStatus && (
           <h3 className="text-xs text-green-600">{correctAnswer}</h3>
         )}
-        {/* correct answer  */}
-        {!answerStatus && (
+        {/* correct answer if user's answer is wrong and timeout */}
+        {!answerStatus && isTimeOut && (
           <h3 className="text-xs text-red-600">{correctAnswer}</h3>
+        )}
+        {/* feedback if user's answer is wrong */}
+        {!answerStatus && !isTimeOut && (
+          <h3 className="text-xs text-red-600">Feedback</h3>
         )}
       </div>
       {/* reflection / explanation  */}
@@ -47,7 +58,9 @@ export default function ResponseCard({
         <div className="flex items-center justify-start gap-2 mb-2">
           {/* explanation header  */}
           <span>💡</span>
-          <p className="font-bold text-blue-800">Explanation</p>
+          <p className="font-bold text-blue-800">
+            Reflection of the Challenge:
+          </p>
         </div>
         {/* Explanation  */}
         <h3 className="text-xs text-blue-600">{reflection}</h3>
