@@ -72,6 +72,17 @@ export default function ChallengeReview({ item, index }) {
         </div>
         <p className="text-blue-600 text-sm font-semibold">{reflection}</p>
       </div>
+      {/* feedback  */}
+      <div className="flex flex-col bg-purple-100 border border-purple-300 rounded-lg p-2 mb-3 gap-1">
+        <div className="flex justify-start items-center gap-2">
+          <Info size={16} className="text-purple-800" />
+          <p className="text-purple-800 font-bold">Feedback: </p>
+        </div>
+        <p className="text-purple-600 text-sm font-semibold">
+          {queInfo.FeedBackonWrongOptions[chosenOption] ||
+            "No feedback available for this option."}
+        </p>
+      </div>
     </div>
   );
 }
