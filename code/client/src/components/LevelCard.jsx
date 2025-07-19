@@ -1,6 +1,8 @@
 import { CheckCircle, Lock, Play } from "lucide-react";
+import { useState } from "react";
 
 export default function LevelCard({ levelProps, currentLevel, handleClick }) {
+  const [showTooltip, setShowTooltip] = useState(false);
   const current = currentLevel === levelProps.id;
   const isUnlocked = levelProps.id <= currentLevel;
 
@@ -16,7 +18,16 @@ export default function LevelCard({ levelProps, currentLevel, handleClick }) {
         isUnlocked ? "cursor-pointer" : "opacity-65"
       }`}
       onClick={() => clickHandler()}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
     >
+      {/* Tooltip */}
+      {!isUnlocked && showTooltip && (
+        <div className="absolute -top-0 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded shadow z-10">
+          Need minimum {(levelProps.id - 1) * 2} stars to Unlock
+        </div>
+      )}
+
       <div className={`bg-gradient-to-br ${levelProps.color} rounded-t-xl p-4`}>
         <div className="flex justify-between items-center mb-2">
           <p

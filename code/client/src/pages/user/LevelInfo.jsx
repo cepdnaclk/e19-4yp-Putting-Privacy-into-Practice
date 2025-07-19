@@ -1,20 +1,30 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import gameLevels from "../../constants/levels";
 import GameLayout from "../../components/GameLayout";
-import { Clock, Target } from "lucide-react";
-import slugify from "../../utils/slugify";
+import { Clock, Star, Target } from "lucide-react";
 
 export default function LevelInfo() {
-  const { principle } = useParams();
+  const { levelValue } = useParams();
   const location = useLocation();
-  const { levelId } = location.state;
+  const { levelId, levelStars } = location.state;
   const level = gameLevels.find((level) => level.id === Number(levelId));
   const navigate = useNavigate();
 
+  const completed = levelStars >= 2;
+
   function handleStartChallenge() {
-    navigate(`/levelBoard/${slugify(principle)}/challenge`, {
-      state: { levelId },
+    navigate(`/levelBoard/${levelValue}/challenge`);
+  }
+
+  function handleBack() {
+    navigate(`/levelBoard/${levelValue}/watchVideo`, {
+      state: { levelId, levelStars },
     });
+  }
+
+  // Revisit the completed quiz.
+  function displayPreviousAnswers() {
+    navigate(`/levelBoard/${levelValue}/review`);
   }
 
   return (
@@ -22,7 +32,21 @@ export default function LevelInfo() {
       <div
         className={`max-w-3xl mx-auto bg-gradient-to-br ${level.color} rounded-xl p-7`}
       >
-        <div className="mt-3 mb-5">{level.icon}</div>
+        <div className="flex justify-between items-center">
+          <div className="mt-3 mb-5">{level.icon}</div>
+          <span className="flex items-center justify-between gap-2">
+            {Array(3)
+              .fill()
+              .map((_, i) => (
+                <Star
+                  key={i}
+                  size={32}
+                  color="white"
+                  fill={i < levelStars ? "white" : "none"}
+                />
+              ))}
+          </span>
+        </div>
         <div className="text-center mb-5">
           <p className="text-white text-4xl font-bold mb-3">{level.title}</p>
           <p className="text-white text-xl font-semibold mb-3">
@@ -39,7 +63,7 @@ export default function LevelInfo() {
             className={`flex flex-1 flex-col items-center justify-center ${level.overlay} bg-opacity-30 rounded-xl p-3 gap-1`}
           >
             <Target size={30} color="white" />
-            <span className="text-white font-bold">2</span>
+            <span className="text-white font-bold">3</span>
             <p className="text-white">Challenges</p>
           </div>
           {/* Time per question */}
@@ -47,17 +71,26 @@ export default function LevelInfo() {
             className={`flex flex-1 flex-col items-center justify-center ${level.overlay} bg-opacity-30 rounded-xl p-3 gap-1`}
           >
             <Clock size={30} color="white" />
-            <span className="text-white font-bold">20s</span>
+            <span className="text-white font-bold">30s</span>
             <p className="text-white">Per Question</p>
           </div>
         </div>
 
-        <button
-          className="bg-white rounded-lg py-2 px-6 font-bold hover:bg-gray-300 mb-1"
-          onClick={handleStartChallenge}
-        >
-          Start Challenge
-        </button>
+        <div className="flex items-center justify-center gap-5 w-full">
+          <button
+            className="bg-white rounded-lg py-2 px-6 font-bold hover:bg-gray-300 mb-1"
+            onClick={handleBack}
+          >
+            Back to Video
+          </button>
+
+          <button
+            className="bg-white rounded-lg py-2 px-6 font-bold hover:bg-gray-300 mb-1"
+            onClick={completed ? displayPreviousAnswers : handleStartChallenge}
+          >
+            {completed ? "Review Challenge" : "Start Challenge"}
+          </button>
+        </div>
       </div>
     </GameLayout>
   );

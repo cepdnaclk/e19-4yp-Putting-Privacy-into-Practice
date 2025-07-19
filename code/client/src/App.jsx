@@ -15,6 +15,9 @@ import LevelBoard from "./pages/user/LevelBoard";
 import LevelInfo from "./pages/user/LevelInfo";
 import QuestionDisplay from "./pages/user/ChallengeDisplay";
 import ResourcesGroup from "./pages/admin/resources/ResourcesGroup";
+import LevelIntro from "./pages/user/LevelIntro";
+import LevelVideo from "./pages/user/LevelVideo";
+import Review from "./pages/user/Review";
 function App() {
   return (
     <BrowserRouter>
@@ -38,11 +41,20 @@ function App() {
         {/* Private routes for users. */}
         <Route element={<AuthRedirect requiredRole="user" />}>
           <Route path="/levelBoard" element={<LevelBoard />} />
-          <Route path="/levelBoard/:principle/info" element={<LevelInfo />} />
+          <Route path="/levelBoard/:levelValue/info" element={<LevelInfo />} />
           <Route
-            path="/levelBoard/:principle/challenge"
+            path="/levelBoard/:levelValue/levelIntro"
+            element={<LevelIntro />}
+          />
+          <Route
+            path="/levelBoard/:levelValue/watchVideo"
+            element={<LevelVideo />}
+          />
+          <Route
+            path="/levelBoard/:levelValue/challenge"
             element={<QuestionDisplay />}
           />
+          <Route path="/levelBoard/:levelValue/review" element={<Review />} />
         </Route>
       </Routes>
     </BrowserRouter>

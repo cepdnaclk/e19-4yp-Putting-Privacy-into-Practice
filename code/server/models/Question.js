@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const questionSchema = new mongoose.Schema({
-  question: {
+  scenario: {
+    type: String,
+    required: true,
+  },
+  challenge: {
     type: String,
     required: true,
   },
@@ -24,6 +28,16 @@ const questionSchema = new mongoose.Schema({
   },
   principle: {
     type: String,
+    required: true,
+  },
+  reflection: {
+    type: String,
+    required: true,
+  },
+  FeedBackonWrongOptions: {
+    type: Map,
+    of: String,
+    default: {},
   },
 });
 

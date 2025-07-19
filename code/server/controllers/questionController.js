@@ -2,25 +2,52 @@ const Question = require('../models/Question');
 
 exports.getQuestionsCount = async (req, res) => {
   try {
-    const count = await Question.countDocuments();
-    res.status(200).json({ count });
+    const [counts, total] = await Promise.all([
+      Question.aggregate([
+        {
+          $group: {
+            _id: '$complexity',
+            count: { $sum: 1 },
+          },
+        },
+      ]),
+      Question.countDocuments(),
+    ]);
+    // Format response as { easy: X, medium: Y, hard: Z, total: N }
+    const result = { easy: 0, medium: 0, hard: 0, total };
+    counts.forEach((item) => {
+      if (item._id === 'easy') result.easy = item.count;
+      if (item._id === 'medium') result.medium = item.count;
+      if (item._id === 'hard') result.hard = item.count;
+    });
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
 };
 
 exports.createQuestion = async (req, res) => {
-  const { question, type, complexity, options, correctAnswer, principle } =
-    req.body;
+  const {
+    scenario,
+    challenge,
+    type,
+    complexity,
+    options,
+    correctAnswer,
+    principle,
+    reflection,
+  } = req.body;
 
   try {
     const newQuestion = new Question({
-      question,
+      scenario,
+      challenge,
       type,
       complexity,
       options,
       correctAnswer,
       principle,
+      reflection,
     });
 
     await newQuestion.save();
