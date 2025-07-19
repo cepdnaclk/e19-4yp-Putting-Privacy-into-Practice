@@ -35,9 +35,10 @@ const questionSchema = new mongoose.Schema({
     required: true,
   },
   FeedBackonWrongOptions: {
-    type: Map,
-    of: String,
-    default: {},
+    A: { type: String, default: '' },
+    B: { type: String, default: '' },
+    C: { type: String, default: '' },
+    D: { type: String, default: '' },
   },
 });
 
