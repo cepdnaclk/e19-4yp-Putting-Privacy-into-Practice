@@ -29,6 +29,8 @@ export default function McqQuestion({
           correctAnswer={`${correctAnswerKey}: ${question.options[correctAnswerKey]}`}
           reflection={question.reflection}
           isTimeOut={isTimeOut}
+          question={question}
+          currentOption={currentOption}
         />
       )}
     </div>

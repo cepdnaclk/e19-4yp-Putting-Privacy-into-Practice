@@ -25,7 +25,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.0",
-    "multer": "^2.0.1"
+    "multer": "^2.0.1",
+    "openai": "^5.10.1"
   },
   "devDependencies": {
     "eslint": "^9.27.0",
