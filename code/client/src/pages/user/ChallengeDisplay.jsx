@@ -328,11 +328,13 @@ export default function QuestionDisplay() {
               </span>
             </button>
           )}
-          {/* next question button */}
-          {showExplanation && !levelEnd && (
-            <div className="flex items-center justify-center gap-2">
-              {/* Retry button */}
-              {userAnswer !== currentQuestion.correctAnswer && retry && (
+
+          {/* Next challenge / complete Level button with retry button */}
+          <div className="flex items-center justify-center gap-2">
+            {/* Retry button */}
+            {showExplanation &&
+              userAnswer !== currentQuestion.correctAnswer &&
+              retry && (
                 <button
                   className="py-1 px-3 rounded-md bg-blue-600 hover:bg-blue-800 cursor-pointer"
                   onClick={retryQuestion}
@@ -342,7 +344,9 @@ export default function QuestionDisplay() {
                   </span>
                 </button>
               )}
-              {/* Next challenge button  */}
+
+            {/* Next challenge button  */}
+            {showExplanation && !levelEnd && (
               <button
                 className="py-1 px-3 rounded-md bg-green-600 hover:bg-green-800 cursor-pointer"
                 onClick={showNextQuestion}
@@ -351,19 +355,21 @@ export default function QuestionDisplay() {
                   Next Challenge
                 </span>
               </button>
-            </div>
-          )}
-          {/* complete level button */}
-          {levelEnd && (
-            <button
-              className="py-1 px-3 rounded-md bg-green-600 hover:bg-green-800 cursor-pointer"
-              onClick={handleLevelCompletion}
-            >
-              <span className="text-xs text-white font-semibold">
-                Complete Level
-              </span>
-            </button>
-          )}
+            )}
+
+            {/* complete level button */}
+            {showExplanation && levelEnd && (
+              <button
+                className="py-1 px-3 rounded-md bg-green-600 hover:bg-green-800 cursor-pointer"
+                onClick={handleLevelCompletion}
+              >
+                <span className="text-xs text-white font-semibold">
+                  Complete Level
+                </span>
+              </button>
+            )}
+          </div>
+
           {/* confirmation modal for challenge retake */}
           {showQuizRetakeModal && (
             <ConfirmationModal
