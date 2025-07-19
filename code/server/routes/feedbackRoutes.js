@@ -6,7 +6,7 @@ const {
 } = require('../controllers/feedbackController');
 const { protect } = require('../middleware/authMiddleware');
 
-router.post('/generate-feedback', generateFeedback);
+router.post('/generate-feedback', protect, generateFeedback);
 router.post('/store-feedback', protect, storeFeedback);
 
 module.exports = router;
