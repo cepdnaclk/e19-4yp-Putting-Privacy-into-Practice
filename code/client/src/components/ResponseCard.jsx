@@ -13,10 +13,9 @@ export default function ResponseCard({
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (currentOption) {
+    if (currentOption && answerStatus === false) {
       const existingFeedback =
-        question.FeedBackonWrongOptions &&
-        question.FeedBackonWrongOptions[currentOption];
+        question?.FeedBackonWrongOptions?.[currentOption];
 
       if (existingFeedback && existingFeedback.trim() !== "") {
         setFeedback(existingFeedback);
@@ -67,7 +66,7 @@ export default function ResponseCard({
         fetchFeedback();
       }
     }
-  }, [currentOption, question]);
+  }, [currentOption, answerStatus, question]);
 
   return (
     <div className="w-full flex flex-col gap-4">
