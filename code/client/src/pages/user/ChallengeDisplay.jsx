@@ -113,7 +113,7 @@ export default function QuestionDisplay() {
   // set the levelEnd based on the timer and number of Questions..
   useEffect(() => {
     const uniqueQuestions = Array.from(
-      new Set(facedQuestions.map((q) => q.question))
+      new Set(facedQuestions.map((q) => q.question._id))
     );
 
     if (timeLeft === 0 || uniqueQuestions.length === TOTAL_CHALLENGES) {
