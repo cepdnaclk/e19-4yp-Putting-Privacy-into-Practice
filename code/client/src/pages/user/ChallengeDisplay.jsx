@@ -233,6 +233,41 @@ export default function QuestionDisplay() {
     window.location.reload(); // Refreshes the current page
   }
 
+  // function to add the feedback on wrong options.
+  function addLLMFeedback(userAnswer, feedbackText) {
+    setFacedQuestions((prev) => {
+      // Clone the previous array
+      const updated = [...prev];
+
+      // Get the last faced question (if exists)
+      const last = updated[updated.length - 1];
+      if (!last || userAnswer === last.question.correctAnswer) return prev;
+
+      // Make a shallow copy of the question object
+      const questionCopy = { ...last.question };
+
+      // Ensure feedback object exists
+      if (!questionCopy.FeedBackonWrongOptions) {
+        questionCopy.FeedBackonWrongOptions = {};
+      }
+
+      // Only add feedback if it’s not already there
+      if (!questionCopy.FeedBackonWrongOptions[userAnswer]) {
+        questionCopy.FeedBackonWrongOptions[userAnswer] = feedbackText;
+
+        // Update the last question entry in the array
+        updated[updated.length - 1] = {
+          ...last,
+          question: questionCopy,
+        };
+
+        return updated;
+      }
+
+      return prev; // no changes made
+    });
+  }
+
   if (loading) {
     return (
       <div role="status" aria-live="polite">
@@ -299,6 +334,7 @@ export default function QuestionDisplay() {
               currentOption={userAnswer}
               showExplanation={showExplanation}
               isTimeOut={timeLeft === 0}
+              onNewFeedback={addLLMFeedback}
             />
           )}
 

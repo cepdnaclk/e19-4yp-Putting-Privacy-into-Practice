@@ -8,6 +8,7 @@ export default function ResponseCard({
   isTimeOut,
   currentOption,
   question,
+  onNewFeedback,
 }) {
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
@@ -55,6 +56,7 @@ export default function ResponseCard({
                 feedback: data.feedback,
               }),
             });
+            onNewFeedback(currentOption, data.feedback);
           } catch (error) {
             console.error("Error fetching or storing feedback:", error);
             setFeedback("Unable to load feedback at this time.");
@@ -66,7 +68,7 @@ export default function ResponseCard({
         fetchFeedback();
       }
     }
-  }, [currentOption, answerStatus, question]);
+  }, [currentOption, answerStatus, question, onNewFeedback, feedback]);
 
   return (
     <div className="w-full flex flex-col gap-4">

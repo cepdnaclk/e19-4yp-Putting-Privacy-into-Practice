@@ -7,6 +7,7 @@ export default function McqQuestion({
   currentOption,
   showExplanation,
   isTimeOut,
+  onNewFeedback,
 }) {
   const correctAnswerKey = question.correctAnswer;
   return (
@@ -31,6 +32,7 @@ export default function McqQuestion({
           isTimeOut={isTimeOut}
           question={question}
           currentOption={currentOption}
+          onNewFeedback={onNewFeedback}
         />
       )}
     </div>
