@@ -1,11 +1,75 @@
 import { CheckCircle } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function ResponseCard({
   answerStatus,
   correctAnswer,
   reflection,
   isTimeOut,
+  currentOption,
+  question,
+  onNewFeedback,
 }) {
+  const [feedback, setFeedback] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (currentOption && answerStatus === false) {
+      const existingFeedback =
+        question?.FeedBackonWrongOptions?.[currentOption];
+
+      if (existingFeedback && existingFeedback.trim() !== "") {
+        setFeedback(existingFeedback);
+      } else {
+        const fetchFeedback = async () => {
+          setLoading(true);
+          try {
+            const response = await fetch("/api/feedback/generate-feedback", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                scenario: question.scenario,
+                challenge: question.challenge,
+                selectedOption: currentOption,
+                correctAnswer: question.correctAnswer,
+                principle: question.principle,
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error("Failed to fetch feedback");
+            }
+
+            const data = await response.json();
+            setFeedback(data.feedback);
+
+            await fetch("/api/feedback/store-feedback", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                questionId: question._id,
+                selectedOption: currentOption,
+                feedback: data.feedback,
+              }),
+            });
+            onNewFeedback(currentOption, data.feedback);
+          } catch (error) {
+            console.error("Error fetching or storing feedback:", error);
+            setFeedback("Unable to load feedback at this time.");
+          } finally {
+            setLoading(false);
+          }
+        };
+
+        fetchFeedback();
+      }
+    }
+  }, [currentOption, answerStatus, question, onNewFeedback, feedback]);
+
   return (
     <div className="w-full flex flex-col gap-4">
       {/* answer Status  */}
@@ -50,7 +114,9 @@ export default function ResponseCard({
         )}
         {/* feedback if user's answer is wrong */}
         {!answerStatus && !isTimeOut && (
-          <h3 className="text-xs text-red-600">Feedback</h3>
+          <h3 className="text-xs text-red-600">
+            {loading ? "Generating feedback...." : feedback}
+          </h3>
         )}
       </div>
       {/* reflection / explanation  */}
