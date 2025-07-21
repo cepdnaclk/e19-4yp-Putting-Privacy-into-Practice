@@ -48,7 +48,7 @@ npm install
 nodemon server
 ```
 
-> The server should now be running (usually on port 3000 or as configured).
+> The server should now be running (usually on port 4000 or as configured).
 
 ---
 
